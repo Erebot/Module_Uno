@@ -123,69 +123,6 @@ ${summary}
     </target>
 
 
-    <!-- Release process -->
-    <target name="release" description="">
-        <pharpackage
-            destfile="${phar.output_file}"
-            signature="sha256"
-            compression="none"
-            alias="Erebot"
-            clistub="/Erebot"
-            basedir="/var/www/Erebot/trunk/"
-            >
-            <fileset dir=".">
-                <include name="i18n/${domain}.pot"/>
-                <include name="i18n/*/LC_MESSAGES/${domain}.po"/>
-                <include name="i18n/*/LC_MESSAGES/${domain}.mo"/>
-            </fileset>
-            <fileset refid="sources"/>
-            <metadata>
-                <element name="version" value="${version}"/>
-                <element name="authors">
-                    <element name="François Poirotte">
-                        <element name="e-mail" value="clicky@erebot.net"/>
-                    </element>
-                </element>
-            </metadata>
-        </pharpackage>
-
-        <pearpkg2 name="ErebotModule_Uno" dir=".">
-            <fileset dir=".">
-                <include name="${phar.output_file}"/>
-            </fileset>
-            <option name="outputdirectory"  value="."/>
-            <option name="channel"          value="pear.erebot.net" />
-            <option name="summary"          value="${summary}"/>
-            <option name="description"      value="${description}"/>
-            <option name="apiversion"       value="0.1.0"/>
-            <option name="apistability"     value="beta"/>
-            <option name="releaseversion"   value="${version}"/>
-            <option name="releasestability" value="beta"/>
-            <option name="license"          value="GPL v3.0 or later"/>
-            <option name="phpdep"           value="5.3.0"/>
-            <option name="pearinstallerdep" value="1.5.0"/>
-            <option name="packagetype"      value="php"/>
-            <option name="notes"            value="${notes}"/>
-            <mapping name="deps">
-                <element>
-                    <element key="channel"  value="pear.erebot.net"/>
-                    <element key="name"     value="Erebot"/>
-                    <element key="version"  value="0.4.0"/>
-                </element>
-            </mapping>
-            <mapping name="maintainers">
-                <element>
-                    <element key="handle"   value="Clicky"/>
-                    <element key="name"     value="François Poirotte"/>
-                    <element key="email"    value="clicky@erebot.net"/>
-                    <element key="role"     value="lead"/>
-                    <element key="active"   value="yes"/>
-                </element>
-            </mapping>
-        </pearpkg2>
-    </target>
-
-
     <!-- Documentation -->
     <target name="doc" description="" depends="doxygen"/>
 
@@ -264,7 +201,6 @@ Generic_Sniffs_Files_LineEndingsSniff
     <target name="qa_test" description="" depends="qa_pre_coverage">
         <phpunit
             printsummary="true"
-            bootstrap="tests/bootstrap.php"
             codecoverage="true"
             >
             <formatter type="plain" usefile="false"/>
