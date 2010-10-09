@@ -16,9 +16,9 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-include_once('modules/Uno/src/exceptions.php');
-include_once('modules/Uno/src/decks.php');
-include_once('modules/Uno/src/hand.php');
+include_once(dirname(__FILE__).'/exceptions.php');
+include_once(dirname(__FILE__).'/decks.php');
+include_once(dirname(__FILE__).'/hand.php');
 
 class   Uno
 {
