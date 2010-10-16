@@ -11,7 +11,6 @@ if (!defined('__DIR__')) {
 } 
 
 include_once(__DIR__.'/src/game.php');
-include_once('src/styling.php');
 
 class   ErebotModule_Uno
 extends ErebotModuleBase
