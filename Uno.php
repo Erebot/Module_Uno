@@ -220,7 +220,7 @@ Displays the nickname of the player whose turn it is.
 '); break;
 
                         default:
-                            throw new EErebotInvalidValue('Unknown command');
+                            throw new Erebot_InvalidValueException('Unknown command');
                     }
                     $formatter = new ErebotStyling($msg, $translator);
                     $formatter->assign('w', $this->getCardText('w'));

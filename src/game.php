@@ -107,7 +107,7 @@ class   Uno
     public static function labelsToRules($labels)
     {
         if (!is_string($labels))
-            throw new EErebotInvalidValue('Invalid ruleset');
+            throw new Erebot_InvalidValueException('Invalid ruleset');
 
         $rulesMapping   =   array(
                                 'loose_draw'    => self::RULES_LOOSE_DRAW,
