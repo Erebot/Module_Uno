@@ -28,4 +28,3 @@ extends UnoStrictRulePlayableCardsTest
     }
 }
 
-?>
