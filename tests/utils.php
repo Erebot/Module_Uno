@@ -1,10 +1,7 @@
 <?php
 
-include_once(dirname(dirname(__FILE__)).'/src/game.php');
-include_once(dirname(dirname(__FILE__)).'/src/hand.php');
-
 class   UnoStub
-extends Uno
+extends Erebot_Module_Uno_Game
 {
     public function __construct($creator, $rules = 0)
     {
@@ -24,11 +21,11 @@ extends Uno
 }
 
 class   UnoStub2
-extends Uno
+extends Erebot_Module_Uno_Game
 {}
 
 class   UnoDeckStub
-extends UnoDeckReal
+extends Erebot_Module_Uno_Deck_Official
 {
     protected function chooseFirstCard()
     {
@@ -37,7 +34,7 @@ extends UnoDeckReal
 }
 
 class   UnoHandStub
-extends UnoHand
+extends Erebot_Module_Uno_Hand
 {
     public function hasCard($card, $count)
     {

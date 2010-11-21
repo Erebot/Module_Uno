@@ -16,21 +16,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (!defined('__DIR__')) {
-  class __FILE_CLASS__ {
-    function  __toString() {
-      $X = debug_backtrace();
-      return dirname($X[1]['file']);
-    }
-  }
-  define('__DIR__', new __FILE_CLASS__);
-} 
-
-include_once(__DIR__.'/exceptions.php');
-include_once(__DIR__.'/decks.php');
-include_once(__DIR__.'/hand.php');
-
-class   Uno
+class Erebot_Module_Uno_Game
 {
     const RULES_LOOSE_DRAW              = 0x01;
     const RULES_CHAINABLE_PENALTIES     = 0x02;
@@ -65,8 +51,11 @@ class   Uno
         $this->drawnCard        =   NULL;
         $this->lastPenaltyCard  =   NULL;
         $this->rules            =   $rules;
-        $deckClass              =   ($rules & self::RULES_UNLIMITED_DECK ?
-                                        'UnoDeckUnlimited' : 'UnoDeckReal');
+        $deckClass              =   (
+                                        ($rules & self::RULES_UNLIMITED_DECK) ?
+                                        'Erebot_Module_Uno_Deck_Unlimited' :
+                                        'Erebot_Module_Uno_Deck_Official'
+                                    );
         $this->deck             =   new $deckClass();
         $this->players          =   array();
         $this->startTime        =   NULL;
@@ -95,7 +84,11 @@ class   Uno
         else
             $cardsCount = 7;
 
-        $this->players[]    = new UnoHand($token, $this->deck, $cardsCount);
+        $this->players[]    = new Erebot_Module_Uno_Hand(
+            $token,
+            $this->deck,
+            $cardsCount
+        );
         $player             = end($this->players);
         if (count($this->players) == 2) {
             $this->startTime = time();
@@ -202,7 +195,7 @@ class   Uno
     public function play($card)
     {
         if ($this->deck->isWaitingForColor())
-            throw new EUnoWaitingForColor();
+            throw new Erebot_Module_Uno_WaitingForColorException();
 
         $card       = strtolower($card);
         $savedCard  = $card;
@@ -210,7 +203,7 @@ class   Uno
         $player     = $this->getCurrentPlayer();
 
         if ($card === NULL) {
-            throw new EUnoInvalidMove('Not a valid card');
+            throw new Erebot_Module_Uno_InvalidMoveException('Not a valid card');
         }
 
         $figure = substr($card['card'], 1);
@@ -219,20 +212,23 @@ class   Uno
         // at once in a non 1-vs-1 game.
         if (strlen($card['card']) == 2 && count($this->players) != 2 &&
             strpos($figure, 'rs') !== FALSE && $card['count'] > 1)
-            throw new EUnoMoveNotAllowed('You cannot play multiple reverses/skips in a non 1vs1 game', 1);
+            throw new Erebot_Module_Uno_MoveNotAllowedException(
+                'You cannot play multiple reverses/skips in a non 1vs1 game', 1);
 
         // Trying to play multiple cards at once.
         if (!($this->rules & self::RULES_MULTIPLE_CARDS) && $card['count'] > 1)
-            throw new EUnoMoveNotAllowed('You cannot play multiple cards', 2);
+            throw new Erebot_Module_Uno_MoveNotAllowedException(
+                'You cannot play multiple cards', 2);
 
         if (!($this->rules & self::RULES_LOOSE_DRAW) &&
             $this->drawnCard !== NULL && $card['card'] != $this->drawnCard)
-            throw new EUnoMoveNotAllowed('You may only play the card you just drew', 3);
+            throw new Erebot_Module_Uno_MoveNotAllowedException(
+                'You may only play the card you just drew', 3);
 
         $discard = $this->deck->getLastDiscardedCard();
         if ($discard !== NULL &&
             !$player->hasCard($card['card'], $card['count']))
-            throw new EUnoMissingCards();
+            throw new Erebot_Module_Uno_MissingCardsException();
 
         do {
             // No card has been played yet,
@@ -294,7 +290,8 @@ class   Uno
                 }
 
                 if (!in_array($card['card'], $allowed))
-                    throw new EUnoMoveNotAllowed('You may not play that move now', 4, NULL, $allowed);
+                    throw new Erebot_Module_Uno_MoveNotAllowedException(
+                        'You may not play that move now', 4, $allowed);
             }
 
             if ($card['card'][0] == 'w')
@@ -306,7 +303,7 @@ class   Uno
             if ($figure == substr($discard['card'], 1))
                 break;  // Same figure.
 
-            throw new EUnoMoveNotAllowed();
+            throw new Erebot_Module_Uno_MoveNotAllowedException('This move is not allowed', 3);
         } while (0);
 
         // Remember last played penalty card.
@@ -362,7 +359,7 @@ class   Uno
         }
 
         else if ($card['card'][0] == 'w' && empty($card['color']))
-            throw new EUnoWaitingForColor();
+            throw new Erebot_Module_Uno_WaitingForColorException();
 
         $this->endTurn($change_player);
         return $skipped_player;
@@ -377,10 +374,10 @@ class   Uno
     public function draw()
     {
         if ($this->deck->isWaitingForColor())
-            throw new EUnoWaitingForColor();
+            throw new Erebot_Module_Uno_WaitingForColorException();
 
         if ($this->drawnCard !== NULL)
-            throw new EUnoAlreadyDrew();
+            throw new Erebot_Module_Uno_AlreadyDrewException();
 
         // Draw = pass when a penalty is at stake.
         if ($this->penalty) {
@@ -399,10 +396,10 @@ class   Uno
     public function pass()
     {
         if ($this->deck->isWaitingForColor())
-            throw new EUnoWaitingForColor();
+            throw new Erebot_Module_Uno_WaitingForColorException();
 
         if ($this->drawnCard === NULL && !$this->penalty)
-            throw new EUnoMustDrawBeforePass();
+            throw new Erebot_Module_Uno_MustDrawBeforePassException();
 
         // Draw the penalty.
         $player = $this->getCurrentPlayer();
@@ -428,11 +425,11 @@ class   Uno
     public function challenge()
     {
         if (!$this->challengeable)
-            throw new EUnoCannotBeChallenged();
+            throw new Erebot_Module_Uno_UnchallengeableException();
 
         $target = $this->getLastPlayer();
         if (!$target)
-            throw new EUnoCannotBeChallenged();
+            throw new Erebot_Module_Uno_UnchallengeableException();
 
         $hand   = $target->getCards();
         $legal  = $this->legalMove;
@@ -529,4 +526,3 @@ class   Uno
 }
 
 # vim: et ts=4 sts=4 sw=4
-?>

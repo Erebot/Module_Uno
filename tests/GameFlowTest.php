@@ -56,7 +56,10 @@ extends PHPUnit_Framework_TestCase
 
     public function testPlayingSwitchesControl2()
     {
-        $uno = new UnoStub('Clicky', Uno::RULES_REVERSIBLE_PENALTIES);
+        $uno = new UnoStub(
+            'Clicky',
+            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+        );
         $uno->join('foo');
         $uno->join('bar');
 
@@ -74,7 +77,10 @@ extends PHPUnit_Framework_TestCase
 
     public function testPlayingSwitchesControl3()
     {
-        $uno = new UnoStub('Clicky', Uno::RULES_REVERSIBLE_PENALTIES);
+        $uno = new UnoStub(
+            'Clicky',
+            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+        );
         $uno->join('foo');
         $uno->join('bar');
         $uno->join('baz');
@@ -93,7 +99,10 @@ extends PHPUnit_Framework_TestCase
 
     public function testPlayingSwitchesControl4()
     {
-        $uno = new UnoStub('Clicky', Uno::RULES_REVERSIBLE_PENALTIES);
+        $uno = new UnoStub(
+            'Clicky',
+            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+        );
         $uno->join('foo');
         $uno->join('bar');
 
@@ -111,7 +120,10 @@ extends PHPUnit_Framework_TestCase
 
     public function test2vs2PenaltyAndReverse()
     {
-        $uno = new UnoStub('Clicky', Uno::RULES_REVERSIBLE_PENALTIES);
+        $uno = new UnoStub(
+            'Clicky',
+            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+        );
         $uno->join('foo');
         $uno->join('bar');
 

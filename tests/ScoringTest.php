@@ -32,7 +32,7 @@
 #     */
 #    public function testScoringFunction($card, $score)
 #    {
-#        $result = Uno::getScore($card);
+#        $result = Erebot_Module_Uno_Game::getScore($card);
 #        $this->assertEquals($score, $result);
 #    }
 #}

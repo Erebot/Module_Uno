@@ -5,7 +5,7 @@ include_once(dirname(__FILE__).'/StrictRulePlayableCardsTest.php');
 class UnoCancelableRulePlayableCardsTest
 extends UnoStrictRulePlayableCardsTest
 {
-    const RULES = Uno::RULES_CANCELABLE_PENALTIES;
+    const RULES = Erebot_Module_Uno_Game::RULES_CANCELABLE_PENALTIES;
 
     public function testCancelling()
     {

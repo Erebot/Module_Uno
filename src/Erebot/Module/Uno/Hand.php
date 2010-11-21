@@ -16,7 +16,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class   UnoHand
+class Erebot_Module_Uno_Hand
 {
     protected $player;
     protected $cards;
@@ -94,4 +94,3 @@ class   UnoHand
     }
 }
 
-?>

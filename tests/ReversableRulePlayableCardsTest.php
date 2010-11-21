@@ -5,7 +5,7 @@ include_once(dirname(__FILE__).'/StrictRulePlayableCardsTest.php');
 class UnoReversableRulePlayableCardsTest
 extends UnoStrictRulePlayableCardsTest
 {
-    const RULES = Uno::RULES_REVERSIBLE_PENALTIES;
+    const RULES = Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES;
 
     public function testReversing()
     {

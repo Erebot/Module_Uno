@@ -1,7 +1,5 @@
 <?php
 
-include_once(dirname(dirname(__FILE__)).'/src/game.php');
-
 class   UnoValidCardsTest
 extends PHPUnit_Framework_TestCase
 {
@@ -24,15 +22,15 @@ extends PHPUnit_Framework_TestCase
             'r+22',
         );
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, NULL);
+            $result = Erebot_Module_Uno_Game::extractCard($card, NULL);
             $this->assertSame(NULL, $result, $card);
         }
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, TRUE);
+            $result = Erebot_Module_Uno_Game::extractCard($card, TRUE);
             $this->assertSame(NULL, $result, $card);
         }
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, FALSE);
+            $result = Erebot_Module_Uno_Game::extractCard($card, FALSE);
             $this->assertSame(NULL, $result, $card);
         }
     }
@@ -64,11 +62,11 @@ extends PHPUnit_Framework_TestCase
             'w+4',
         );
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, NULL);
+            $result = Erebot_Module_Uno_Game::extractCard($card, NULL);
             $this->assertNotSame(NULL, $result, $card);
         }
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, FALSE);
+            $result = Erebot_Module_Uno_Game::extractCard($card, FALSE);
             $this->assertNotSame(NULL, $result, $card);
         }
     }
@@ -80,15 +78,15 @@ extends PHPUnit_Framework_TestCase
             'w+4',
         );
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, NULL);
+            $result = Erebot_Module_Uno_Game::extractCard($card, NULL);
             $this->assertNotSame(NULL, $result, $card);
         }
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, FALSE);
+            $result = Erebot_Module_Uno_Game::extractCard($card, FALSE);
             $this->assertNotSame(NULL, $result, $card);
         }
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, TRUE);
+            $result = Erebot_Module_Uno_Game::extractCard($card, TRUE);
             $this->assertSame(NULL, $result, $card);
         }
     }
@@ -100,15 +98,15 @@ extends PHPUnit_Framework_TestCase
             'w+4r',
         );
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, NULL);
+            $result = Erebot_Module_Uno_Game::extractCard($card, NULL);
             $this->assertNotSame(NULL, $result, $card);
         }
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, TRUE);
+            $result = Erebot_Module_Uno_Game::extractCard($card, TRUE);
             $this->assertNotSame(NULL, $result, $card);
         }
         foreach ($cards as $card) {
-            $result = Uno::extractCard($card, FALSE);
+            $result = Erebot_Module_Uno_Game::extractCard($card, FALSE);
             $this->assertSame(NULL, $result, $card);
         }
     }
