@@ -74,8 +74,7 @@ extends Erebot_Module_Base
             $this->_db = array();
 
             $registry   = $this->_connection->getModule(
-                'Erebot_Module_TriggerRegistry',
-                Erebot_Connection::MODULE_BY_NAME
+                'Erebot_Module_TriggerRegistry'
             );
             $matchAny = Erebot_Utils::getVStatic($registry, 'MATCH_ANY');
 
@@ -129,7 +128,7 @@ extends Erebot_Module_Base
                         );
 
         $bot        =&  $this->_connection->getBot();
-        $moduleName =   $bot->moduleClassToName($this);
+        $moduleName =   get_class();
         $nbArgs     =   count($words);
 
         if ($nbArgs == 1 && $words[0] == strtolower($moduleName)) {
@@ -255,8 +254,7 @@ Displays the nickname of the player whose turn it is.
     protected function & getNickTracker()
     {
         return $this->_connection->getModule(
-            'Erebot_Module_NickTracker',
-            Erebot_Connection::MODULE_BY_NAME
+            'Erebot_Module_NickTracker'
         );
     }
 
@@ -388,8 +386,7 @@ Displays the nickname of the player whose turn it is.
         }
 
         $registry   =   $this->_connection->getModule(
-            'Erebot_Module_TriggerRegistry',
-            Erebot_Connection::MODULE_BY_NAME
+            'Erebot_Module_TriggerRegistry'
         );
         $triggers   =   array(
                             'challenge'     =>  $this->parseString('trigger_challenge',     'ch'),
@@ -1042,8 +1039,7 @@ Displays the nickname of the player whose turn it is.
             $tracker->stopTracking($game->getCreator());
   
             $registry = $this->_connection->getModule(
-                'Erebot_Module_TriggerRegistry',
-                Erebot_Connection::MODULE_BY_NAME
+                'Erebot_Module_TriggerRegistry'
             );
             $registry->freeTriggers($this->_chans[$chan]['triggers_token']);
 
