@@ -1,6 +1,6 @@
 <?php
 
-include_once(dirname(__FILE__).'/StrictRulePlayableCardsTest.php');
+require_once(dirname(__FILE__).'/StrictRulePlayableCardsTest.php');
 
 class UnoChainableRulePlayableCardsTest
 extends UnoStrictRulePlayableCardsTest
