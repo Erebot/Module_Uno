@@ -19,20 +19,20 @@
 class   Erebot_Module_Uno_Deck_Unlimited
 extends Erebot_Module_Uno_Deck_Abstract
 {
-    protected $discarded;
-    protected $firstCard;
+    protected $_discarded;
+    protected $_firstCard;
 
     public function __construct()
     {
-        $this->discarded = NULL;
+        $this->_discarded = NULL;
         $this->chooseFirstCard();
     }
 
     protected function chooseFirstCard()
     {
         // Find the first (playable) card.
-        for ($this->firstCard = $this->draw();
-            $this->firstCard[0] == 'w';
+        for ($this->_firstCard = $this->draw();
+            $this->_firstCard[0] == 'w';
             )
             ;
     }
@@ -72,7 +72,7 @@ extends Erebot_Module_Uno_Deck_Abstract
     public function discard($card)
     {
         parent::discard($card);
-        $this->discarded = $this->extractCard($card);
+        $this->_discarded = $this->extractCard($card);
     }
 
     public function shuffle()
@@ -82,7 +82,7 @@ extends Erebot_Module_Uno_Deck_Abstract
 
     public function getLastDiscardedCard()
     {
-        return $this->discarded;
+        return $this->_discarded;
     }
 
     public function getRemainingCardsCount()
@@ -95,7 +95,7 @@ extends Erebot_Module_Uno_Deck_Abstract
         parent::chooseColor($color);
         $last = $this->getLastDiscardedCard();
         $last['color']      = $color;
-        $this->discarded    = $last;
+        $this->_discarded   = $last;
     }
 }
 

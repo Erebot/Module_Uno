@@ -18,15 +18,15 @@
 
 class Erebot_Module_Uno_Hand
 {
-    protected $player;
-    protected $cards;
-    protected $deck;
+    protected $_player;
+    protected $_cards;
+    protected $_deck;
 
     public function __construct(&$player, &$deck, $cardsCount = 7)
     {
-        $this->player   =&  $player;
-        $this->cards    =   array();
-        $this->deck     =&  $deck;
+        $this->_player   =&  $player;
+        $this->_cards    =   array();
+        $this->_deck     =&  $deck;
 
         for ($i = 0; $i < $cardsCount; $i++)
             $this->draw();
@@ -34,35 +34,35 @@ class Erebot_Module_Uno_Hand
 
     public function & getPlayer()
     {
-        return $this->player;
+        return $this->_player;
     }
 
     public function getCards()
     {
-        return $this->cards;
+        return $this->_cards;
     }
 
     public function getCardsCount()
     {
-        return count($this->cards);
+        return count($this->_cards);
     }
 
     public function draw()
     {
-        $card = $this->deck->draw();
-        $this->cards[] = $card;
+        $card = $this->_deck->draw();
+        $this->_cards[] = $card;
         return $card;
     }
 
     public function discard($card)
     {
-        $card   = $this->deck->extractCard($card);
-        $key    = array_search($card['card'], $this->cards);
+        $card   = $this->_deck->extractCard($card);
+        $key    = array_search($card['card'], $this->_cards);
         if ($key === FALSE)
             throw new Exception();
 
-        unset($this->cards[$key]);
-        $this->deck->discard($card);
+        unset($this->_cards[$key]);
+        $this->_deck->discard($card);
     }
 
     public function hasCard($card, $count)
@@ -73,14 +73,14 @@ class Erebot_Module_Uno_Hand
             $card = $card['card'];
         }
 
-        $found  = array_keys($this->cards, $card);
+        $found  = array_keys($this->_cards, $card);
         return (count($found) >= $count);
     }
 
     public function getScore()
     {
         $score = 0;
-        foreach ($this->cards as $card) {
+        foreach ($this->_cards as $card) {
             if ($card == 'w' || $card == 'w+4')
                 $score += 50;
 

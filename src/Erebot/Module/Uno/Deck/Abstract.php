@@ -18,8 +18,8 @@
 
 abstract class  Erebot_Module_Uno_Deck_Abstract
 {
-    protected $firstCard = NULL;
-    protected $waitingForColor = FALSE;
+    protected $_firstCard = NULL;
+    protected $_waitingForColor = FALSE;
 
     public function extractCard($card)
     {
@@ -36,7 +36,7 @@ abstract class  Erebot_Module_Uno_Deck_Abstract
 
     final public function getFirstCard()
     {
-        return $this->firstCard;
+        return $this->_firstCard;
     }
 
     final public function isValidColor($color)
@@ -47,7 +47,7 @@ abstract class  Erebot_Module_Uno_Deck_Abstract
 
     final public function isWaitingForColor()
     {
-        return $this->waitingForColor;
+        return $this->_waitingForColor;
     }
 
     abstract protected function chooseFirstCard();
@@ -69,17 +69,17 @@ abstract class  Erebot_Module_Uno_Deck_Abstract
 
         if ($last['card'][0] != 'w' || !empty($last['color']))
             throw new Erebot_Module_Uno_InternalErrorException();
-        $this->waitingForColor = FALSE;
+        $this->_waitingForColor = FALSE;
     }
 
     public function discard($card)
     {
-        if ($this->waitingForColor)
+        if ($this->_waitingForColor)
             throw new Erebot_Module_Uno_WaitingForColorException();
 
         $card = $this->extractCard($card);
         if ($card['color'] === NULL)
-            $this->waitingForColor = TRUE;
+            $this->_waitingForColor = TRUE;
     }
 }
 

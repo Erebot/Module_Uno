@@ -28,16 +28,16 @@ extends Erebot_Module_Uno_Game
     public function __construct($creator, $rules = 0)
     {
         parent::__construct($creator, $rules);
-        unset($this->deck);
-        $this->deck = new UnoDeckStub();
+        unset($this->_deck);
+        $this->_deck = new UnoDeckStub();
     }
 
     public function & join($player)
     {
-        $this->players[]    = new UnoHandStub($player, $this->deck);
-        $token              = end($this->players);
-        if (count($this->players) == 2)
-            $this->startTime = time();
+        $this->_players[]   = new UnoHandStub($player, $this->_deck);
+        $token              = end($this->_players);
+        if (count($this->_players) == 2)
+            $this->_startTime = time();
         return $token;
     }
 }
@@ -51,7 +51,7 @@ extends Erebot_Module_Uno_Deck_Official
 {
     protected function chooseFirstCard()
     {
-        $this->firstCard = NULL;
+        $this->_firstCard = NULL;
     }
 }
 
@@ -71,7 +71,7 @@ extends Erebot_Module_Uno_Hand
             $card = $card['card'];
         }
 
-        $this->deck->discard($card);
+        $this->_deck->discard($card);
     }
 }
 

@@ -26,16 +26,17 @@ class Erebot_Module_Uno_Game
     const RULES_UNLIMITED_DECK          = 0x20;
     const RULES_MULTIPLE_CARDS          = 0x40;
 
-    protected $penalty;
-    protected $lastPenaltyCard;
-    protected $rules;
-    protected $deck;
-    protected $order;
-    protected $players;
-    protected $startTime;
-    protected $creator;
-    protected $challengeable;
-    protected $legalMove;
+    protected $_penalty;
+    protected $_lastPenaltyCard;
+    protected $_rules;
+    protected $_deck;
+    protected $_order;
+    protected $_players;
+    protected $_startTime;
+    protected $_creator;
+    protected $_challengeable;
+    protected $_legalMove;
+    protected $_drawnCard;
 
     public function __construct($creator, $rules = 0)
     {
@@ -46,21 +47,21 @@ class Erebot_Module_Uno_Game
         else
             $rules = 0;
 
-        $this->creator          =&  $creator;
-        $this->penalty          =   0;
-        $this->drawnCard        =   NULL;
-        $this->lastPenaltyCard  =   NULL;
-        $this->rules            =   $rules;
+        $this->_creator         =&  $creator;
+        $this->_penalty         =   0;
+        $this->_drawnCard       =   NULL;
+        $this->_lastPenaltyCard =   NULL;
+        $this->_rules           =   $rules;
         $deckClass              =   (
                                         ($rules & self::RULES_UNLIMITED_DECK) ?
                                         'Erebot_Module_Uno_Deck_Unlimited' :
                                         'Erebot_Module_Uno_Deck_Official'
                                     );
-        $this->deck             =   new $deckClass();
-        $this->players          =   array();
-        $this->startTime        =   NULL;
-        $this->challengeable    =   FALSE;
-        $this->legalMove        =   FALSE;
+        $this->_deck            =   new $deckClass();
+        $this->_players         =   array();
+        $this->_startTime       =   NULL;
+        $this->_challengeable   =   FALSE;
+        $this->_legalMove       =   FALSE;
     }
 
     public function __destruct()
@@ -72,10 +73,10 @@ class Erebot_Module_Uno_Game
     {
         // Determine how many cards should
         // be dealt to that new player.
-        $nbPlayers = count($this->players);
+        $nbPlayers = count($this->_players);
         if ($nbPlayers) {
             $cardsCount = 0;
-            foreach ($this->players as &$player) {
+            foreach ($this->_players as &$player) {
                 $cardsCount += $player->getCardsCount();
             }
             unset($player);
@@ -84,15 +85,15 @@ class Erebot_Module_Uno_Game
         else
             $cardsCount = 7;
 
-        $this->players[]    = new Erebot_Module_Uno_Hand(
+        $this->_players[] = new Erebot_Module_Uno_Hand(
             $token,
-            $this->deck,
+            $this->_deck,
             $cardsCount
         );
-        $player             = end($this->players);
-        if (count($this->players) == 2) {
-            $this->startTime = time();
-            shuffle($this->players);
+        $player             = end($this->_players);
+        if (count($this->_players) == 2) {
+            $this->_startTime = time();
+            shuffle($this->_players);
         }
         return $player;
     }
@@ -152,18 +153,18 @@ class Erebot_Module_Uno_Game
         return $labels;
     }
 
-    static public function extractCard($card, $with_color)
+    static public function extractCard($card, $withColor)
     {
         $card       = strtolower($card);
 
-        $wild_pattern   = '/^(w\\+4|w)(';
-        if ($with_color !== FALSE)
-            $wild_pattern .= '[rbgy]';
-        if ($with_color === NULL)
-            $wild_pattern .= '?';
-        $wild_pattern  .= ')$/';
+        $wildPattern   = '/^(w\\+4|w)(';
+        if ($withColor !== FALSE)
+            $wildPattern .= '[rbgy]';
+        if ($withColor === NULL)
+            $wildPattern .= '?';
+        $wildPattern  .= ')$/';
 
-        if (preg_match($wild_pattern, $card, $matches)) {
+        if (preg_match($wildPattern, $card, $matches)) {
             return array(
                 'card'  => $matches[1],
                 'color' => $matches[2],
@@ -194,7 +195,7 @@ class Erebot_Module_Uno_Game
 
     public function play($card)
     {
-        if ($this->deck->isWaitingForColor())
+        if ($this->_deck->isWaitingForColor())
             throw new Erebot_Module_Uno_WaitingForColorException();
 
         $card       = strtolower($card);
@@ -210,22 +211,22 @@ class Erebot_Module_Uno_Game
 
         // Trying to play multiple reverse/skip
         // at once in a non 1-vs-1 game.
-        if (strlen($card['card']) == 2 && count($this->players) != 2 &&
+        if (strlen($card['card']) == 2 && count($this->_players) != 2 &&
             strpos($figure, 'rs') !== FALSE && $card['count'] > 1)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
                 'You cannot play multiple reverses/skips in a non 1vs1 game', 1);
 
         // Trying to play multiple cards at once.
-        if (!($this->rules & self::RULES_MULTIPLE_CARDS) && $card['count'] > 1)
+        if (!($this->_rules & self::RULES_MULTIPLE_CARDS) && $card['count'] > 1)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
                 'You cannot play multiple cards', 2);
 
-        if (!($this->rules & self::RULES_LOOSE_DRAW) &&
-            $this->drawnCard !== NULL && $card['card'] != $this->drawnCard)
+        if (!($this->_rules & self::RULES_LOOSE_DRAW) &&
+            $this->_drawnCard !== NULL && $card['card'] != $this->_drawnCard)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
                 'You may only play the card you just drew', 3);
 
-        $discard = $this->deck->getLastDiscardedCard();
+        $discard = $this->_deck->getLastDiscardedCard();
         if ($discard !== NULL &&
             !$player->hasCard($card['card'], $card['count']))
             throw new Erebot_Module_Uno_MissingCardsException();
@@ -236,57 +237,57 @@ class Erebot_Module_Uno_Game
             if ($discard === NULL)
                 break;
 
-            if ($this->penalty) {
+            if ($this->_penalty) {
                 $colors     = str_split('bryg');
                 $allowed    = array();
-                $disc_fig   = substr($discard['card'], 1);
-                $pen_fig    = substr($this->lastPenaltyCard['card'], 1);
+                $discFig    = substr($discard['card'], 1);
+                $penFig     = substr($this->_lastPenaltyCard['card'], 1);
 
-                if ($disc_fig == 'r') {
-                    if ($this->rules & self::RULES_REVERSIBLE_PENALTIES)
+                if ($discFig == 'r') {
+                    if ($this->_rules & self::RULES_REVERSIBLE_PENALTIES)
                         foreach ($colors as $color)
                             $allowed[] = $color.'r';
 
                     // Also takes care of self::RULES_CANCELABLE_PENALTIES.
-                    if ($this->rules & self::RULES_SKIPPABLE_PENALTIES)
-                        $allowed[] = $this->lastPenaltyCard['color'].'s';
+                    if ($this->_rules & self::RULES_SKIPPABLE_PENALTIES)
+                        $allowed[] = $this->_lastPenaltyCard['color'].'s';
                 }
 
-                else if ($disc_fig == 's') {
+                else if ($discFig == 's') {
                     // Also takes care of self::RULES_CANCELABLE_PENALTIES.
-                    if ($this->rules & self::RULES_SKIPPABLE_PENALTIES)
+                    if ($this->_rules & self::RULES_SKIPPABLE_PENALTIES)
                         foreach ($colors as $color)
                             $allowed[] = $color.'s';
 
-                    if ($this->rules & self::RULES_REVERSIBLE_PENALTIES)
-                        $allowed[] = $this->lastPenaltyCard['color'].'r';
+                    if ($this->_rules & self::RULES_REVERSIBLE_PENALTIES)
+                        $allowed[] = $this->_lastPenaltyCard['color'].'r';
                 }
 
-                else if (!strcmp($pen_fig, '+2')) {
-                    if ($this->rules & self::RULES_CHAINABLE_PENALTIES) {
+                else if (!strcmp($penFig, '+2')) {
+                    if ($this->_rules & self::RULES_CHAINABLE_PENALTIES) {
                         $allowed[] = 'w+4';
                         foreach ($colors as $color)
                             $allowed[] = $color.'+2';
                     }
 
-                    if ($this->rules & self::RULES_REVERSIBLE_PENALTIES)
-                        $allowed[] = $this->lastPenaltyCard['color'].'r';
+                    if ($this->_rules & self::RULES_REVERSIBLE_PENALTIES)
+                        $allowed[] = $this->_lastPenaltyCard['color'].'r';
 
                     // Also takes care of self::RULES_SKIPPABLE_PENALTIES.
-                    if ($this->rules & self::RULES_CANCELABLE_PENALTIES)
-                        $allowed[] = $this->lastPenaltyCard['color'].'s';
+                    if ($this->_rules & self::RULES_CANCELABLE_PENALTIES)
+                        $allowed[] = $this->_lastPenaltyCard['color'].'s';
                 }
 
-                else if (!strcmp($pen_fig, '+4')) {
-                    if ($this->rules & self::RULES_CHAINABLE_PENALTIES)
+                else if (!strcmp($penFig, '+4')) {
+                    if ($this->_rules & self::RULES_CHAINABLE_PENALTIES)
                         $allowed[] = 'w+4';
 
-                    if ($this->rules & self::RULES_REVERSIBLE_PENALTIES)
-                        $allowed[] = $this->lastPenaltyCard['color'].'r';
+                    if ($this->_rules & self::RULES_REVERSIBLE_PENALTIES)
+                        $allowed[] = $this->_lastPenaltyCard['color'].'r';
 
                     // Also takes care of self::RULES_SKIPPABLE_PENALTIES.
-                    if ($this->rules & self::RULES_CANCELABLE_PENALTIES)
-                        $allowed[] = $this->lastPenaltyCard['color'].'s';
+                    if ($this->_rules & self::RULES_CANCELABLE_PENALTIES)
+                        $allowed[] = $this->_lastPenaltyCard['color'].'s';
                 }
 
                 if (!in_array($card['card'], $allowed))
@@ -307,22 +308,24 @@ class Erebot_Module_Uno_Game
         } while (0);
 
         // Remember last played penalty card.
-        $this->challengeable = FALSE;
+        $this->_challengeable = FALSE;
         if ($card['card'] == 'w+4') {
-            $this->lastPenaltyCard = $card;
-            $this->penalty += 4;
-            if ($this->penalty == 4)
-                $this->challengeable = TRUE;
+            $this->_lastPenaltyCard = $card;
+            $this->_penalty += 4;
+            if ($this->_penalty == 4)
+                $this->_challengeable = TRUE;
         }
         else if (!strcmp($figure, '+2')) {
-            $this->lastPenaltyCard = $card;
-            $this->penalty += 2 * $card['count'];
+            $this->_lastPenaltyCard = $card;
+            $this->_penalty += 2 * $card['count'];
         }
 
         // If at least one card was played before.
         if ($discard !== NULL) {
-            $this->legalMove = self::isLegalMove($discard['color'],
-                                                $player->getCards());
+            $this->_legalMove = self::isLegalMove(
+                $discard['color'],
+                $player->getCards()
+            );
 
             // Remove those cards from the player's hand.
             for ($i = 0; $i < $card['count']; $i++)
@@ -330,81 +333,81 @@ class Erebot_Module_Uno_Game
         }
         // No card has been played yet, anything is acceptable.
         else
-            $this->deck->discard($savedCard);
+            $this->_deck->discard($savedCard);
 
-        $change_player = TRUE;
-        $skipped_player = NULL;
+        $changePlayer = TRUE;
+        $skippedPlayer = NULL;
         if ($figure == 'r') {
-            if (count($this->players) > 2 || ($this->penalty &&
-                    ($this->rules & self::RULES_REVERSIBLE_PENALTIES)))
-                $this->players = array_reverse($this->players);
+            if (count($this->_players) > 2 || ($this->_penalty &&
+                    ($this->_rules & self::RULES_REVERSIBLE_PENALTIES)))
+                $this->_players = array_reverse($this->_players);
             else
-                $skipped_player = $this->getLastPlayer();
-            $change_player = FALSE;
+                $skippedPlayer = $this->getLastPlayer();
+            $changePlayer = FALSE;
         }
 
         else if ($figure == 's') {
-            if ($this->penalty) {
-                if (($this->rules & self::RULES_CANCELABLE_PENALTIES) ==
+            if ($this->_penalty) {
+                if (($this->_rules & self::RULES_CANCELABLE_PENALTIES) ==
                         self::RULES_CANCELABLE_PENALTIES) {
                     // The penalty gets canceled.
-                    $this->penalty = 0;
+                    $this->_penalty = 0;
                 }
             }
             // Regular skip.
             else {
                 $this->endTurn(TRUE);
-                $skipped_player = $this->getCurrentPlayer();
+                $skippedPlayer = $this->getCurrentPlayer();
             }
         }
 
         else if ($card['card'][0] == 'w' && empty($card['color']))
             throw new Erebot_Module_Uno_WaitingForColorException();
 
-        $this->endTurn($change_player);
-        return $skipped_player;
+        $this->endTurn($changePlayer);
+        return $skippedPlayer;
     }
 
     public function chooseColor($color)
     {
-        $this->deck->chooseColor($color);
+        $this->_deck->chooseColor($color);
         $this->endTurn(TRUE);
     }
 
     public function draw()
     {
-        if ($this->deck->isWaitingForColor())
+        if ($this->_deck->isWaitingForColor())
             throw new Erebot_Module_Uno_WaitingForColorException();
 
-        if ($this->drawnCard !== NULL)
+        if ($this->_drawnCard !== NULL)
             throw new Erebot_Module_Uno_AlreadyDrewException();
 
         // Draw = pass when a penalty is at stake.
-        if ($this->penalty) {
-            $this->drawnCard = TRUE;
+        if ($this->_penalty) {
+            $this->_drawnCard = TRUE;
             return $this->pass();
         }
 
         // Otherwise, it's a normal card draw.
         else {
             $player = $this->getCurrentPlayer();
-            $this->drawnCard = $player->draw();
-            return array($this->drawnCard);
+            $this->_drawnCard = $player->draw();
+            return array($this->_drawnCard);
         }
     }
 
     public function pass()
     {
-        if ($this->deck->isWaitingForColor())
+        if ($this->_deck->isWaitingForColor())
             throw new Erebot_Module_Uno_WaitingForColorException();
 
-        if ($this->drawnCard === NULL && !$this->penalty)
+        if ($this->_drawnCard === NULL && !$this->_penalty)
             throw new Erebot_Module_Uno_MustDrawBeforePassException();
 
         // Draw the penalty.
         $player = $this->getCurrentPlayer();
         $drawnCards = array();
-        for (; $this->penalty > 0; $this->penalty--)
+        for (; $this->_penalty > 0; $this->_penalty--)
             $drawnCards[] = $player->draw();
         unset($player);
 
@@ -412,19 +415,19 @@ class Erebot_Module_Uno_Game
         return $drawnCards;
     }
 
-    protected function endTurn($change_player)
+    protected function endTurn($changePlayer)
     {
-        if ($change_player) {
-            $last = array_shift($this->players);
-            $this->players[] =& $last;
+        if ($changePlayer) {
+            $last = array_shift($this->_players);
+            $this->_players[] =& $last;
         }
 
-        $this->drawnCard = NULL;
+        $this->_drawnCard = NULL;
     }
 
     public function challenge()
     {
-        if (!$this->challengeable)
+        if (!$this->_challengeable)
             throw new Erebot_Module_Uno_UnchallengeableException();
 
         $target = $this->getLastPlayer();
@@ -432,18 +435,18 @@ class Erebot_Module_Uno_Game
             throw new Erebot_Module_Uno_UnchallengeableException();
 
         $hand   = $target->getCards();
-        $legal  = $this->legalMove;
+        $legal  = $this->_legalMove;
         if ($legal) {
             $target = $this->getCurrentPlayer();
-            $this->penalty += 2;
+            $this->_penalty += 2;
             $this->endTurn(TRUE);
         }
 
         $drawnCards = array();
-        for (; $this->penalty > 0; $this->penalty--)
+        for (; $this->_penalty > 0; $this->_penalty--)
             $drawnCards[] = $target->draw();
 
-        $this->challengeable = FALSE;
+        $this->_challengeable = FALSE;
 
         return array(
             'legal' => $legal,
@@ -465,7 +468,7 @@ class Erebot_Module_Uno_Game
 
     public function getCurrentPlayer()
     {
-        return reset($this->players);
+        return reset($this->_players);
     }
 
     public function getLastPlayer()
@@ -473,52 +476,52 @@ class Erebot_Module_Uno_Game
         if (!$this->getLastPlayedCard())
             return NULL;
 
-        return end($this->players);
+        return end($this->_players);
     }
 
-    public function getRules($as_text)
+    public function getRules($asText)
     {
-        if ($as_text)
-            return $this->rulesToLabels($this->rules);
-        return $this->rules;
+        if ($asText)
+            return $this->rulesToLabels($this->_rules);
+        return $this->_rules;
     }
 
     public function & getCreator()
     {
-        return $this->creator;
+        return $this->_creator;
     }
 
     public function getElapsedTime()
     {
-        if ($this->startTime === NULL)
+        if ($this->_startTime === NULL)
             return NULL;
 
-        return time() - $this->startTime;
+        return time() - $this->_startTime;
     }
 
     public function getPenalty()
     {
-        return $this->penalty;
+        return $this->_penalty;
     }
 
     public function getLastPlayedCard()
     {
-        return $this->deck->getLastDiscardedCard();
+        return $this->_deck->getLastDiscardedCard();
     }
 
     public function & getPlayers()
     {
-        return $this->players;
+        return $this->_players;
     }
 
     public function getFirstCard()
     {
-        return $this->deck->getFirstCard();
+        return $this->_deck->getFirstCard();
     }
 
     public function getRemainingCardsCount()
     {
-        $count = $this->deck->getRemainingCardsCount();
+        $count = $this->_deck->getRemainingCardsCount();
         if (!is_int($count) || $count < 0)
             return NULL;
         return $count;

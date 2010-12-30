@@ -19,32 +19,32 @@
 class   Erebot_Module_Uno_Deck_Official
 extends Erebot_Module_Uno_Deck_Abstract
 {
-    protected $cards;
-    protected $discarded;
-    protected $firstCard;
+    protected $_cards;
+    protected $_discarded;
+    protected $_firstCard;
 
     public function __construct()
     {
         $colors             = str_split('rbgy');
-        $this->discarded    = array();
-        $this->cards        = array();
+        $this->_discarded   = array();
+        $this->_cards       = array();
 
         // Add colored cards.
         foreach ($colors as $color) {
-            $this->discarded[] = array('card' => $color.'0');
+            $this->_discarded[] = array('card' => $color.'0');
             for ($i = 0; $i < 2; $i++) {
-                $this->discarded[] = array('card' => $color.'r');
-                $this->discarded[] = array('card' => $color.'s');
-                $this->discarded[] = array('card' => $color.'+2');
+                $this->_discarded[] = array('card' => $color.'r');
+                $this->_discarded[] = array('card' => $color.'s');
+                $this->_discarded[] = array('card' => $color.'+2');
                 for ($j = 1; $j <= 9; $j++)
-                    $this->discarded[] = array('card' => $color.$j);
+                    $this->_discarded[] = array('card' => $color.$j);
             }
         }
 
         // Add wilds.
         for ($i = 0; $i < 4; $i++) {
-            $this->discarded[] = array('card' => 'w');
-            $this->discarded[] = array('card' => 'w+4');
+            $this->_discarded[] = array('card' => 'w');
+            $this->_discarded[] = array('card' => 'w+4');
         }
 
         // Shuffle cards.
@@ -56,25 +56,25 @@ extends Erebot_Module_Uno_Deck_Abstract
     protected function chooseFirstCard()
     {
         // Find the first (playable) card.
-        for ($this->firstCard = reset($this->cards);
-            $this->firstCard[0] == 'w';
-            $this->firstCard = next($this->cards))
+        for ($this->_firstCard = reset($this->_cards);
+            $this->_firstCard[0] == 'w';
+            $this->_firstCard = next($this->_cards))
             ;
 
-        unset($this->cards[key($this->cards)]);
+        unset($this->_cards[key($this->_cards)]);
     }
 
     public function draw()
     {
-        if (!count($this->cards))
+        if (!count($this->_cards))
             throw new Erebot_Module_Uno_EmptyDeckException();
-        return array_shift($this->cards);
+        return array_shift($this->_cards);
     }
 
     public function discard($card)
     {
         parent::discard($card);
-        array_unshift($this->discarded, $this->extractCard($card));
+        array_unshift($this->_discarded, $this->extractCard($card));
     }
 
     static private function __getCard($a)
@@ -84,35 +84,35 @@ extends Erebot_Module_Uno_Deck_Abstract
 
     public function shuffle()
     {
-        if (count($this->cards))
+        if (count($this->_cards))
             throw new Erebot_Module_Uno_InternalErrorException();
 
-        $this->cards        = array_map(
+        $this->_cards       = array_map(
             array($this, '__getCard'),
-            $this->discarded
+            $this->_discarded
         );
-        shuffle($this->cards);
-        $this->discarded    = array();
+        shuffle($this->_cards);
+        $this->_discarded    = array();
     }
 
     public function getLastDiscardedCard()
     {
-        if (!count($this->discarded))
+        if (!count($this->_discarded))
             return NULL;
-        return $this->discarded[0];
+        return $this->_discarded[0];
     }
 
     public function getRemainingCardsCount()
     {
-        return count($this->cards);
+        return count($this->_cards);
     }
 
     public function chooseColor($color)
     {
         parent::chooseColor($color);
         $last = $this->getLastDiscardedCard();
-        $last['color']      = $color;
-        $this->discarded[0] = $last;
+        $last['color']          = $color;
+        $this->_discarded[0]    = $last;
     }
 }
 

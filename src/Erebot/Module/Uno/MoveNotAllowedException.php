@@ -19,17 +19,17 @@
 class   Erebot_Module_Uno_MoveNotAllowedException
 extends Erebot_Module_Uno_Exception
 {
-    protected $allowed;
+    protected $_allowed;
 
     public function __construct($message = NULL, $code = 0, $allowed = NULL)
     {
         parent::__construct($message, $code);
-        $this->allowed = $allowed;
+        $this->_allowed = $allowed;
     }
 
     public function getAllowedCards()
     {
-        return $this->allowed;
+        return $this->_allowed;
     }
 }
 
