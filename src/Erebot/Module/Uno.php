@@ -288,13 +288,6 @@ extends Erebot_Module_Base
         }
     }
 
-    protected function & getNickTracker()
-    {
-        return $this->_connection->getModule(
-            'Erebot_Module_NickTracker'
-        );
-    }
-
     protected function getLogo()
     {
         return  Erebot_Styling::CODE_BOLD.
@@ -403,7 +396,6 @@ extends Erebot_Module_Base
 
     public function handleCreate(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $nick       =   $event->getSource();
         $chan       =   $event->getChan();
         $text       =   strtolower($event->getText());
@@ -423,7 +415,7 @@ extends Erebot_Module_Base
             $tpl        = new Erebot_Styling($message, $translator);
 
             $tpl->assign('logo',    $this->getLogo());
-            $tpl->assign('creator', $tracker->getNick($creator));
+            $tpl->assign('creator', (string) $creator);
             $tpl->assign('rules',   $infos['game']->getRules(TRUE));
             $tpl->assign('trigger', $infos['triggers']['join']);
             $this->sendMessage($chan, $tpl->render());
@@ -465,6 +457,7 @@ extends Erebot_Module_Base
         if (trim($rules) == '')
             $rules = $this->parseString('default_rules', '');
 
+        $tracker = $this->_connection->getModule('Erebot_Module_NickTracker');
         $creator                    =   $tracker->startTracking($nick);
         $infos['triggers_token']    =   $token;
         $infos['triggers']          =&  $triggers;
@@ -571,7 +564,6 @@ extends Erebot_Module_Base
 
     public function handleChallenge(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
         $current    =   $this->getCurrentPlayer($chan);
@@ -579,7 +571,7 @@ extends Erebot_Module_Base
         $translator =   $this->getTranslator($chan);
 
         if ($current === NULL) return;
-        $currentNick    =   $tracker->getNick($current->getPlayer());
+        $currentNick    =   (string) $current->getPlayer();
         if (strcasecmp($nick, $currentNick)) return;
 
         // We must fetch the last player's entry before calling challenge()
@@ -598,7 +590,7 @@ extends Erebot_Module_Base
             return $event->preventDefault();
         }
 
-        $lastNick   = $tracker->getNick($lastPlayer->getPlayer());
+        $lastNick   = (string) $lastPlayer->getPlayer();
         $message = $translator->gettext(
             '<var name="logo"/> <b><var name="nick"/></b> challenges '.
             '<b><var name="last_nick"/></b>\'s <var name="card"/>.'
@@ -681,14 +673,13 @@ extends Erebot_Module_Base
 
     public function handleChoose(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
         $current    =   $this->getCurrentPlayer($chan);
         $translator =   $this->getTranslator(FALSE);
 
         if ($current === NULL) return;
-        $currentNick    =   $tracker->getNick($current->getPlayer());
+        $currentNick    =   (string) $current->getPlayer();
         if (strcasecmp($nick, $currentNick)) return;
 
         $color  = Erebot_Utils::gettok($event->getText(), 1, 1);
@@ -717,14 +708,13 @@ extends Erebot_Module_Base
 
     public function handleDraw(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
         $current    =   $this->getCurrentPlayer($chan);
         $translator =   $this->getTranslator($chan);
 
         if ($current === NULL) return;
-        $currentNick = $tracker->getNick($current->getPlayer());
+        $currentNick = (string) $current->getPlayer();
         if (strcasecmp($nick, $currentNick)) return;
 
         $game =& $this->_chans[$chan]['game'];
@@ -776,7 +766,7 @@ extends Erebot_Module_Base
             $tpl = new Erebot_Styling($message, $translator);
             $tpl->assign('cards', $cardsTexts);
             $this->sendMessage(
-                $tracker->getNick($player->getPlayer()),
+                (string) $player->getPlayer(),
                 $tpl->render()
             );
         }
@@ -805,7 +795,6 @@ extends Erebot_Module_Base
 
     public function handleJoin(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $nick       =   $event->getSource();
         $chan       =   $event->getChan();
         $translator =   $this->getTranslator($chan);
@@ -815,7 +804,7 @@ extends Erebot_Module_Base
 
         $players =& $game->getPlayers();
         foreach ($players as &$player) {
-            if (!strcasecmp($tracker->getNick($player->getPlayer()), $nick)) {
+            if (!strcasecmp((string) $player->getPlayer(), $nick)) {
                 $message    = $translator->gettext(
                     '<var name="logo"/> You\'re already '.
                     'in the game <b><var name="nick"/></b>!'
@@ -837,6 +826,7 @@ extends Erebot_Module_Base
         $tpl->assign('logo', $this->getLogo());
         $this->sendMessage($chan, $tpl->render());
 
+        $tracker = $this->_connection->getModule('Erebot_Module_NickTracker');
         $token  =   $tracker->startTracking($nick);
         $player =&  $game->join($token);
         $cards  =   $player->getCards();
@@ -856,7 +846,7 @@ extends Erebot_Module_Base
         if (count($players) == 2) {
             $names = array();
             foreach ($players as &$player) {
-                $names[] = $tracker->getNick($player->getPlayer());
+                $names[] = (string) $player->getPlayer();
             }
             unset($player);
 
@@ -864,7 +854,7 @@ extends Erebot_Module_Base
             $this->handleShowOrder($event);
 
             $player         = $game->getCurrentPlayer();
-            $currentNick    = $tracker->getNick($player->getPlayer());
+            $currentNick    = (string) $player->getPlayer();
             $message        = $translator->gettext(
                 '<b><var name="nick"/></b> deals '.
                 'the first card from the stock'
@@ -886,7 +876,7 @@ extends Erebot_Module_Base
 
             $skippedPlayer  = $game->play($firstCard);
             if ($skippedPlayer) {
-                $skippedNick    = $tracker->getNick($skippedPlayer->getPlayer());
+                $skippedNick    = (string) $skippedPlayer->getPlayer();
                 $message        = $translator->gettext(
                     '<var name="logo"/> <b><var name="nick"/></b> '.
                     'skips his turn!'
@@ -906,14 +896,13 @@ extends Erebot_Module_Base
 
     public function handlePass(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
         $current    =   $this->getCurrentPlayer($chan);
         $translator =   $this->getTranslator($chan);
 
         if ($current === NULL) return;
-        $currentNick    =   $tracker->getNick($current->getPlayer());
+        $currentNick = (string) $current->getPlayer();
         if (strcasecmp($nick, $currentNick)) return;
 
         $game       =&  $this->_chans[$chan]['game'];
@@ -983,7 +972,7 @@ extends Erebot_Module_Base
         $tpl = new Erebot_Styling($message, $translator);
         $tpl->assign('cards', $cardsTexts);
         $this->sendMessage(
-            $tracker->getNick($player->getPlayer()),
+            (string) $player->getPlayer(),
             $tpl->render()
         );
 
@@ -992,14 +981,13 @@ extends Erebot_Module_Base
 
     public function handlePlay(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
         $current    =   $this->getCurrentPlayer($chan);
         $translator =   $this->getTranslator($chan);
 
         if ($current === NULL) return;
-        $currentNick    =   $tracker->getNick($current->getPlayer());
+        $currentNick = (string) $current->getPlayer();
         if (strcasecmp($nick, $currentNick)) return;
 
         $game =&    $this->_chans[$chan]['game'];
@@ -1119,7 +1107,7 @@ extends Erebot_Module_Base
 
                 $tpl = new Erebot_Styling($message, $translator);
                 $tpl->assign('logo', $this->getLogo());
-                $tpl->assign('nick', $tracker->getNick($next->getPlayer()));
+                $tpl->assign('nick', (string) $next->getPlayer());
                 $tpl->assign('count', $drawnCards);
                 $this->sendMessage($chan, $tpl->render());
             }
@@ -1157,11 +1145,10 @@ extends Erebot_Module_Base
                         '<var name="card"/></for>'
                     );
                     $tpl = new Erebot_Styling($message, $translator);
-                    $tpl->assign('nick', $tracker->getNick($token));
+                    $tpl->assign('nick', (string) $token);
                     $tpl->assign('cards', $cards);
                     $this->sendMessage($chan, $tpl->render());
                 }
-                $tracker->stopTracking($token);
             }
             unset($player);
 
@@ -1174,8 +1161,6 @@ extends Erebot_Module_Base
             $tpl->assign('score', $score);
             $this->sendMessage($chan, $tpl->render());
 
-            $tracker->stopTracking($game->getCreator());
-  
             $registry = $this->_connection->getModule(
                 'Erebot_Module_TriggerRegistry'
             );
@@ -1190,7 +1175,7 @@ extends Erebot_Module_Base
         }
 
         if ($skippedPlayer) {
-            $skippedNick    = $tracker->getNick($skippedPlayer->getPlayer());
+            $skippedNick    = (string) $skippedPlayer->getPlayer();
             $message        = $translator->gettext(
                 '<var name="logo"/> '.
                 '<b><var name="nick"/></b> skips his turn!'
@@ -1250,14 +1235,13 @@ extends Erebot_Module_Base
         );
         $tpl = new Erebot_Styling($message, $translator);
         $tpl->assign('cards', $cards);
-        $this->sendMessage($tracker->getNick($next->getPlayer()), $tpl->render());
+        $this->sendMessage((string) $next->getPlayer(), $tpl->render());
 
         return $event->preventDefault(TRUE);
     }
 
     public function handleShowCardsCount(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
         $translator =   $this->getTranslator($chan);
@@ -1269,7 +1253,7 @@ extends Erebot_Module_Base
         $ingame     =   NULL;
 
         foreach ($players as &$player) {
-            $pnick          = $tracker->getNick($player->getPlayer());
+            $pnick          = (string) $player->getPlayer();
             $counts[$pnick] = $player->getCardsCount();
             if ($nick == $pnick)
                 $ingame =& $player;
@@ -1344,7 +1328,6 @@ extends Erebot_Module_Base
 
     public function handleShowOrder(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $translator =   $this->getTranslator($chan);
 
@@ -1353,7 +1336,7 @@ extends Erebot_Module_Base
         $players    =&  $game->getPlayers();
         $nicks      =   array();
         foreach ($players as &$player) {
-            $nicks[] = $tracker->getNick($player->getPlayer());
+            $nicks[] = (string) $player->getPlayer();
         }
         unset($player);
 
@@ -1394,14 +1377,13 @@ extends Erebot_Module_Base
 
     public function handleShowTurn(Erebot_Interface_Event_Generic &$event)
     {
-        $tracker    =&  $this->getNickTracker();
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
         $current    =   $this->getCurrentPlayer($chan);
         $translator =   $this->getTranslator($chan);
 
         if ($current === NULL) return;
-        $currentNick = $tracker->getNick($current->getPlayer());
+        $currentNick = (string) $current->getPlayer();
 
         if (!strcasecmp($nick, $currentNick))
             $message = $translator->gettext(
