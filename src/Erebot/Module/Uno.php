@@ -92,12 +92,16 @@ extends Erebot_Module_Base
                     'Could not register UNO creation trigger'
                 ));
 
-            $this->_creator['handler']  =   new Erebot_EventHandler(
-                                                array($this, 'handleCreate'),
-                                                'Erebot_Event_ChanText');
-            $this->_creator['handler']
-                ->addFilter(new Erebot_TextFilter_Static($triggerCreate, TRUE))
-                ->addFilter(new Erebot_TextFilter_Wildcard($triggerCreate.' *', TRUE));
+            $this->_creator['handler']  = new Erebot_EventHandler(
+                array($this, 'handleCreate'),
+                new Erebot_Event_Match_All(
+                    new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                    new Erebot_Event_Match_Any(
+                        new Erebot_Event_Match_TextStatic($triggerCreate, TRUE),
+                        new Erebot_Event_Match_TextWildcard($triggerCreate.' *', TRUE)
+                    )
+                )
+            );
             $this->_connection->addEventHandler($this->_creator['handler']);
             $this->registerHelpMethod(array($this, 'getHelp'));
         }
@@ -468,79 +472,90 @@ extends Erebot_Module_Base
 
         $infos['handlers']['challenge']     =   new Erebot_EventHandler(
             array($this, 'handleChallenge'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['challenge'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['challenge'], NULL)
+            )
         );
 
         $infos['handlers']['choose']        =   new Erebot_EventHandler(
             array($this, 'handleChoose'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Wildcard($triggers['choose'].' *', NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextWildcard($triggers['choose'].' *', NULL)
+            )
         );
 
         $infos['handlers']['draw']          =   new Erebot_EventHandler(
             array($this, 'handleDraw'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['draw'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['draw'], NULL)
+            )
         );
 
         $infos['handlers']['join']          =   new Erebot_EventHandler(
             array($this, 'handleJoin'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['join'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['join'], NULL)
+            )
         );
 
         $infos['handlers']['pass']          =   new Erebot_EventHandler(
             array($this, 'handlePass'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['pass'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['pass'], NULL)
+            )
         );
 
         $infos['handlers']['play']          =   new Erebot_EventHandler(
             array($this, 'handlePlay'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Wildcard($triggers['play'].' *', NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextWildcard($triggers['play'].' *', NULL)
+            )
         );
 
         $infos['handlers']['show_cards']    =   new Erebot_EventHandler(
             array($this, 'handleShowCardsCount'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['show_cards'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['show_cards'], NULL)
+            )
         );
 
         $infos['handlers']['show_discard']  =   new Erebot_EventHandler(
             array($this, 'handleShowDiscard'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['show_discard'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['show_discard'], NULL)
+            )
         );
 
         $infos['handlers']['show_order']    =   new Erebot_EventHandler(
             array($this, 'handleShowOrder'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['show_order'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['show_order'], NULL)
+            )
         );
 
         $infos['handlers']['show_time']     =   new Erebot_EventHandler(
             array($this, 'handleShowTime'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['show_time'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['show_time'], NULL)
+            )
         );
 
         $infos['handlers']['show_turn']     =   new Erebot_EventHandler(
             array($this, 'handleShowTurn'),
-            'Erebot_Event_ChanText',
-            NULL,
-            new Erebot_TextFilter_Static($triggers['show_turn'], NULL)
+            new Erebot_Event_Match_All(
+                new Erebot_Event_Match_InstanceOf('Erebot_Event_ChanText'),
+                new Erebot_Event_Match_TextStatic($triggers['show_turn'], NULL)
+            )
         );
 
         foreach ($infos['handlers'] as &$handler)
