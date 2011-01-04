@@ -1338,6 +1338,18 @@ extends Erebot_Module_Base
         $tpl->assign('discard', $discard);
         $tpl->assign('count',   $count);
         $this->sendMessage($chan, $tpl->render());
+
+        if ($card['card'][0] == 'w' && !empty($card['color'])) {
+            $message = $translator->gettext(
+                '<var name="logo"/> The current color is '.
+                '<var name="color"/>'
+            );
+            $tpl = new Erebot_Styling($message, $translator);
+            $tpl->assign('logo',    $this->getLogo());
+            $tpl->assign('color',   $this->getCardText($card['color']));
+            $this->sendMessage($chan, $tpl->render());
+        }
+
         return $event->preventDefault(TRUE);
     }
 
