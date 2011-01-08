@@ -402,7 +402,7 @@ extends Erebot_Module_Base
     {
         $nick       =   $event->getSource();
         $chan       =   $event->getChan();
-        $text       =   strtolower($event->getText());
+        $rules      =   strtolower($event->getText()->geTokens(1));
         $translator =   $this->getTranslator($chan);
 
         if (isset($this->_chans[$chan])) {
@@ -456,7 +456,6 @@ extends Erebot_Module_Base
 
         $this->_chans[$chan] = array();
         $infos  =&  $this->_chans[$chan];
-        $rules  =   Erebot_Utils::gettok($text, 1);
 
         if (trim($rules) == '')
             $rules = $this->parseString('default_rules', '');
@@ -697,9 +696,7 @@ extends Erebot_Module_Base
         $currentNick    =   (string) $current->getPlayer();
         if (strcasecmp($nick, $currentNick)) return;
 
-        $color  = Erebot_Utils::gettok($event->getText(), 1, 1);
-        $color  = strtolower($color);
-
+        $color  = strtolower($event->getText()->geTokens(1, 1));
         try {
             $this->_chans[$chan]['game']->chooseColor($color);
             $message    = $translator->gettext(
