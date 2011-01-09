@@ -22,7 +22,7 @@ extends Erebot_Module_Base
     static protected $_metadata = array(
         'requires'  =>  array(
             'Erebot_Module_TriggerRegistry',
-            'Erebot_Module_NickTracker',
+            'Erebot_Module_IrcTracker',
             'Erebot_Module_Helper',
         ),
     );
@@ -460,7 +460,7 @@ extends Erebot_Module_Base
         if (trim($rules) == '')
             $rules = $this->parseString('default_rules', '');
 
-        $tracker = $this->_connection->getModule('Erebot_Module_NickTracker');
+        $tracker = $this->_connection->getModule('Erebot_Module_IrcTracker');
         $creator                    =   $tracker->startTracking($nick);
         $infos['triggers_token']    =   $token;
         $infos['triggers']          =&  $triggers;
@@ -838,7 +838,7 @@ extends Erebot_Module_Base
         $tpl->assign('logo', $this->getLogo());
         $this->sendMessage($chan, $tpl->render());
 
-        $tracker = $this->_connection->getModule('Erebot_Module_NickTracker');
+        $tracker = $this->_connection->getModule('Erebot_Module_IrcTracker');
         $token  =   $tracker->startTracking($nick);
         $player =&  $game->join($token);
         $cards  =   $player->getCards();
