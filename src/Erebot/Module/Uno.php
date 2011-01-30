@@ -61,7 +61,7 @@ extends Erebot_Module_Base
         }
     }
 
-    public function reload($flags)
+    public function _reload($flags)
     {
         if ($flags & self::RELOAD_MEMBERS) {
             $this->_chans = array();
@@ -105,6 +105,10 @@ extends Erebot_Module_Base
             $this->_connection->addEventHandler($this->_creator['handler']);
             $this->registerHelpMethod(array($this, 'getHelp'));
         }
+    }
+
+    protected function _unload()
+    {
     }
 
     public function getHelp(Erebot_Interface_Event_TextMessage &$event, $words)
