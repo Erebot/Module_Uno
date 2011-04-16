@@ -261,8 +261,8 @@ extends Erebot_Module_Base
 
                         case 'show_time':
                             $msg = $translator->gettext(
-                                'Displays the ellapsed time since '.
-                                'the beginning of the game.'
+                                'Displays how much time has elapsed '.
+                                'since the beginning of the game.'
                             );
                             break;
 
@@ -1074,7 +1074,7 @@ extends Erebot_Module_Base
 
                 default:
                     $message = $translator->gettext(
-                        'You cannot play that move'
+                        'You cannot play that move now'
                     );
                     break;
             }
