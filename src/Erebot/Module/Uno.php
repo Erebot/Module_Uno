@@ -406,7 +406,7 @@ extends Erebot_Module_Base
     {
         $nick       =   $event->getSource();
         $chan       =   $event->getChan();
-        $rules      =   strtolower($event->getText()->geTokens(1));
+        $rules      =   strtolower($event->getText()->getTokens(1));
         $translator =   $this->getTranslator($chan);
 
         if (isset($this->_chans[$chan])) {
@@ -477,7 +477,8 @@ extends Erebot_Module_Base
             array($this, 'handleChallenge'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['challenge'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['challenge'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -485,7 +486,8 @@ extends Erebot_Module_Base
             array($this, 'handleChoose'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextWildcard($triggers['choose'].' *', NULL)
+                new Erebot_Event_Match_TextWildcard($triggers['choose'].' *', NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -493,7 +495,8 @@ extends Erebot_Module_Base
             array($this, 'handleDraw'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['draw'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['draw'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -501,7 +504,8 @@ extends Erebot_Module_Base
             array($this, 'handleJoin'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['join'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['join'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -509,7 +513,8 @@ extends Erebot_Module_Base
             array($this, 'handlePass'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['pass'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['pass'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -517,7 +522,8 @@ extends Erebot_Module_Base
             array($this, 'handlePlay'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextWildcard($triggers['play'].' *', NULL)
+                new Erebot_Event_Match_TextWildcard($triggers['play'].' *', NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -525,7 +531,8 @@ extends Erebot_Module_Base
             array($this, 'handleShowCardsCount'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['show_cards'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['show_cards'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -533,7 +540,8 @@ extends Erebot_Module_Base
             array($this, 'handleShowDiscard'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['show_discard'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['show_discard'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -541,7 +549,8 @@ extends Erebot_Module_Base
             array($this, 'handleShowOrder'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['show_order'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['show_order'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -549,7 +558,8 @@ extends Erebot_Module_Base
             array($this, 'handleShowTime'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['show_time'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['show_time'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -557,7 +567,8 @@ extends Erebot_Module_Base
             array($this, 'handleShowTurn'),
             new Erebot_Event_Match_All(
                 new Erebot_Event_Match_InstanceOf('Erebot_Interface_Event_ChanText'),
-                new Erebot_Event_Match_TextStatic($triggers['show_turn'], NULL)
+                new Erebot_Event_Match_TextStatic($triggers['show_turn'], NULL),
+                new Erebot_Event_Match_Chan($chan)
             )
         );
 
@@ -700,7 +711,7 @@ extends Erebot_Module_Base
         $currentNick    =   (string) $current->getPlayer();
         if (strcasecmp($nick, $currentNick)) return;
 
-        $color  = strtolower($event->getText()->geTokens(1, 1));
+        $color  = strtolower($event->getText()->getTokens(1, 1));
         try {
             $this->_chans[$chan]['game']->chooseColor($color);
             $message    = $translator->gettext(
