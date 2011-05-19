@@ -398,7 +398,7 @@ extends Erebot_Module_Base
         $synEvent = new Erebot_Event_ChanText(
                         $event->getConnection(),
                         $event->getChan(),
-                        NULL, '');
+                        '', '');
         $this->handleShowTurn($synEvent);
     }
 
