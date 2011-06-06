@@ -4,9 +4,9 @@
 #
 #, fuzzy
 msgid   ""
-msgstr  "Project-Id-Version: Erebot_Module_Uno 0.3.2\n"
-        "Report-Msgid-Bugs-To: clicky@erebot.net\n"
-        "POT-Creation-Date: 2011-06-03 22:25+0200\n"
+msgstr  "Project-Id-Version: Erebot_Module_Uno 0.1.1\n"
+        "Report-Msgid-Bugs-To: i18n@erebot.net\n"
+        "POT-Creation-Date: 2011-06-07 01:26+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,209 +14,209 @@ msgstr  "Project-Id-Version: Erebot_Module_Uno 0.3.2\n"
         "Content-Type: text/plain; charset=CHARSET\n"
         "Content-Transfer-Encoding: 8bit\n"
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 674
+# File: src/Erebot/Module/Uno.php, line: 674
 msgid   "<b><var name=\"last_nick\"/></b>'s move was legal. <b><var name=\"nick"
         "\"/></b> must pick <b><var name=\"count\"/></b> cards!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 886
+# File: src/Erebot/Module/Uno.php, line: 886
 msgid   "<b><var name=\"nick\"/></b> deals the first card from the stock"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 802
+# File: src/Erebot/Module/Uno.php, line: 802
 msgid   "<b><var name=\"nick\"/></b> draws a card"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1119
+# File: src/Erebot/Module/Uno.php, line: 1119
 msgid   "<b><var name=\"nick\"/></b> has <var name=\"logo\"/>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 848
+# File: src/Erebot/Module/Uno.php, line: 848
 msgid   "<b><var name=\"nick\"/></b> joins this <var name=\"logo\"/> game."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 965
+# File: src/Erebot/Module/Uno.php, line: 965
 msgid   "<b><var name=\"nick\"/></b> passes turn"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 772
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 960
+# File: src/Erebot/Module/Uno.php, line: 772
+# File: src/Erebot/Module/Uno.php, line: 960
 msgid   "<b><var name=\"nick\"/></b> passes turn, and has to pick <b><var name="
         "\"count\"/></b> cards!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1106
+# File: src/Erebot/Module/Uno.php, line: 1106
 msgid   "<b><var name=\"nick\"/></b> plays <var name=\"card\"/> <b><var name="
         "\"count\"/> times!</b>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 641
+# File: src/Erebot/Module/Uno.php, line: 641
 msgid   "<b><var name=\"nick\"/></b>'s cards: <for from=\"cards\" item=\"card"
         "\" separator=\" \"><var name=\"card\"/></for>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 652
+# File: src/Erebot/Module/Uno.php, line: 652
 msgid   "<b><var name=\"nick\"/></b>'s move <b>WAS NOT</b> legal. <b><var name="
         "\"nick\"/></b> must pick <b><var name=\"count\"/></b> cards!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 624
+# File: src/Erebot/Module/Uno.php, line: 624
 msgid   "<var name=\"logo\"/> <b><var name=\"nick\"/></b> challenges <b><var "
         "name=\"last_nick\"/></b>'s <var name=\"card\"/>."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1131
+# File: src/Erebot/Module/Uno.php, line: 1131
 msgid   "<var name=\"logo\"/> <b><var name=\"nick\"/></b> must draw <b><var "
         "name=\"count\"/></b> cards."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 908
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1207
+# File: src/Erebot/Module/Uno.php, line: 908
+# File: src/Erebot/Module/Uno.php, line: 1207
 msgid   "<var name=\"logo\"/> <b><var name=\"nick\"/></b> skips his turn!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 753
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 941
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1218
+# File: src/Erebot/Module/Uno.php, line: 753
+# File: src/Erebot/Module/Uno.php, line: 941
+# File: src/Erebot/Module/Uno.php, line: 1218
 msgid   "<var name=\"logo\"/> <b><var name=\"nick\"/></b>, please choose a "
         "color with <b><var name=\"cmd\"/> &lt;r|b|g|y&gt;</b>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1429
+# File: src/Erebot/Module/Uno.php, line: 1429
 msgid   "<var name=\"logo\"/> <b><var name=\"nick\"/></b>: it's your turn "
         "sleepyhead!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 416
+# File: src/Erebot/Module/Uno.php, line: 416
 msgid   "<var name=\"logo\"/> A game is already running, managed by <var name="
         "\"creator\"/>. The following rules apply: <for from=\"rules\" item="
         "\"rule\"><var name=\"rule\"/></for>. Say \"<b><var name=\"trigger\"/"
         "></b>\" to join it."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 579
+# File: src/Erebot/Module/Uno.php, line: 579
 msgid   "<var name=\"logo\"/> A new game has been created in <var name=\"chan"
         "\"/>. The following rules apply: <for from=\"rules\" item=\"rule"
         "\"><var name=\"rule\"/></for>. Say \"<b><var name=\"trigger\"/></b>\" "
         "to join it."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1291
+# File: src/Erebot/Module/Uno.php, line: 1291
 msgid   "<var name=\"logo\"/> Cards: <for from=\"counts\" item=\"count\" key="
         "\"nick\"><b><var name=\"nick\"/></b>: <var name=\"count\"/></for>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 896
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1338
+# File: src/Erebot/Module/Uno.php, line: 896
+# File: src/Erebot/Module/Uno.php, line: 1338
 msgid   "<var name=\"logo\"/> Current discard: <var name=\"discard\"/>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1343
+# File: src/Erebot/Module/Uno.php, line: 1343
 msgid   "<var name=\"logo\"/> Current discard: <var name=\"discard\"/> "
         "(<b><var name=\"count\"/></b> cards left in stock)"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1434
+# File: src/Erebot/Module/Uno.php, line: 1434
 msgid   "<var name=\"logo\"/> It's <b><var name=\"nick\"/></b>'s turn."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1243
+# File: src/Erebot/Module/Uno.php, line: 1243
 msgid   "<var name=\"logo\"/> Next player must respond correctly or pick "
         "<b><var name=\"count\"/></b> cards"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1383
+# File: src/Erebot/Module/Uno.php, line: 1383
 msgid   "<var name=\"logo\"/> Playing order: <for from=\"nicks\" item=\"nick"
         "\"><b><var name=\"nick\"/></b></for>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 614
+# File: src/Erebot/Module/Uno.php, line: 614
 msgid   "<var name=\"logo\"/> Previous move cannot be challenged!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 718
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1232
+# File: src/Erebot/Module/Uno.php, line: 718
+# File: src/Erebot/Module/Uno.php, line: 1232
 msgid   "<var name=\"logo\"/> The color is now <var name=\"color\"/>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1356
+# File: src/Erebot/Module/Uno.php, line: 1356
 msgid   "<var name=\"logo\"/> The current color is <var name=\"color\"/>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 836
+# File: src/Erebot/Module/Uno.php, line: 836
 msgid   "<var name=\"logo\"/> You're already in the game <b><var name=\"nick\"/"
         "></b>!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1143
+# File: src/Erebot/Module/Uno.php, line: 1143
 msgid   "<var name=\"logo\"/> game finished in <var name=\"duration\"/>. The "
         "winner is <b><var name=\"nick\"/></b>!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1404
+# File: src/Erebot/Module/Uno.php, line: 1404
 msgid   "<var name=\"logo\"/> game running since <var name=\"duration\"/>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1170
+# File: src/Erebot/Module/Uno.php, line: 1170
 msgid   "<var name=\"nick\"/> still had <for from=\"cards\" item=\"card\" "
         "separator=\" \"><var name=\"card\"/></for>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1183
+# File: src/Erebot/Module/Uno.php, line: 1183
 msgid   "<var name=\"nick\"/> wins with <b><var name=\"score\"/></b> points"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 92
+# File: src/Erebot/Module/Uno.php, line: 92
 msgid   "Could not register UNO creation trigger"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 264
+# File: src/Erebot/Module/Uno.php, line: 264
 msgid   "Displays how much time has elapsed since the beginning of the game."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 271
+# File: src/Erebot/Module/Uno.php, line: 271
 msgid   "Displays the nickname of the player whose turn it is to play"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 243
+# File: src/Erebot/Module/Uno.php, line: 243
 msgid   "Displays the number of cards in each players's hand. Also displays "
         "your hand in a separate query."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 257
+# File: src/Erebot/Module/Uno.php, line: 257
 msgid   "Displays the order in which players take turns to play."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 251
+# File: src/Erebot/Module/Uno.php, line: 251
 msgid   "Displays the top card of the discard."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 197
+# File: src/Erebot/Module/Uno.php, line: 197
 msgid   "Draw a new card. You may choose to play the card you just drew "
         "afterwards, using the \"<var name=\"play\"/>\" command. This command "
         "can also be used to draw penalty cards and pass your turn."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 726
+# File: src/Erebot/Module/Uno.php, line: 726
 msgid   "Hmm, yes <b><var name=\"nick\"/></b>, what is it?"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 207
+# File: src/Erebot/Module/Uno.php, line: 207
 msgid   "Join the current <var name=\"logo\"/> game. The bot will send you the "
         "list of your cards in a separate query."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1329
+# File: src/Erebot/Module/Uno.php, line: 1329
 msgid   "No card has been played yet"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 215
+# File: src/Erebot/Module/Uno.php, line: 215
 msgid   "Pass your turn. Note that you must first draw a card with <var name="
         "\"draw\"/> before you pass. This command can also be used to draw "
         "penalty cards and pass your turn."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 224
+# File: src/Erebot/Module/Uno.php, line: 224
 msgid   "Play a card. The card must be described using its mnemonic. Eg. "
         "\"<var name=\"play\"/> r1\" to play <var name=\"r1\"/><var name="
         "\"reset\"/>, \"<var name=\"play\"/> r+2\" to play <var name=\"r+2\"/"
@@ -227,7 +227,7 @@ msgid   "Play a card. The card must be described using its mnemonic. Eg. "
         "\"/> w+4\" to play <var name=\"w+4\"/><var name=\"reset\"/>."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 146
+# File: src/Erebot/Module/Uno.php, line: 146
 msgid   "Provides the <b><var name=\"trigger_create\"/></b> command which "
         "starts a new Uno game. Once a game has been created, other commands "
         "become available to interact with the bot (<for item=\"command\" from="
@@ -236,7 +236,7 @@ msgid   "Provides the <b><var name=\"trigger_create\"/></b> command which "
         "<u>command</u>&gt;."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 184
+# File: src/Erebot/Module/Uno.php, line: 184
 msgid   "Select the new color after you played a <var name=\"w\"/> or <var "
         "name=\"w+4\"/>, eg. \"<var name=\"choose\"/> &lt;<u>color</u>&gt;\". "
         "Valid &lt;<u>color</u>&gt;s: <b>r</b> (red), <b>b</b> (blue), <b>g</"
@@ -245,53 +245,53 @@ msgid   "Select the new color after you played a <var name=\"w\"/> or <var "
         "+4b\"."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1034
+# File: src/Erebot/Module/Uno.php, line: 1034
 msgid   "This move is not valid"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 452
+# File: src/Erebot/Module/Uno.php, line: 452
 msgid   "Unable to register triggers for <var name=\"logo\"/> game!"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 764
+# File: src/Erebot/Module/Uno.php, line: 764
 msgid   "You already drew a card"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1049
+# File: src/Erebot/Module/Uno.php, line: 1049
 msgid   "You cannot play multiple cards"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1042
+# File: src/Erebot/Module/Uno.php, line: 1042
 msgid   "You cannot play multiple reverses/skips in a non 1vs1 game"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1063
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1088
+# File: src/Erebot/Module/Uno.php, line: 1063
+# File: src/Erebot/Module/Uno.php, line: 1088
 msgid   "You cannot play that move now"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1097
+# File: src/Erebot/Module/Uno.php, line: 1097
 msgid   "You do not have the cards required for that move"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 665
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 691
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 813
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 978
+# File: src/Erebot/Module/Uno.php, line: 665
+# File: src/Erebot/Module/Uno.php, line: 691
+# File: src/Erebot/Module/Uno.php, line: 813
+# File: src/Erebot/Module/Uno.php, line: 978
 msgid   "You drew: <for from=\"cards\" item=\"card\" separator=\" \"><var name="
         "\"card\"/></for>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1076
+# File: src/Erebot/Module/Uno.php, line: 1076
 msgid   "You may only play one of the following cards: <for from=\"cards\" "
         "item=\"card\" separator=\" \"><var name=\"card\"/></for>"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1055
+# File: src/Erebot/Module/Uno.php, line: 1055
 msgid   "You may only play the card you just drew"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 169
+# File: src/Erebot/Module/Uno.php, line: 169
 msgid   "You may only use this command after someone played a <var name=\"w+4"
         "\"/> and no other penalty had been played before. It shows you the "
         "hand of the player you challenged. If that person played a <var name="
@@ -301,15 +301,15 @@ msgid   "You may only use this command after someone played a <var name=\"w+4"
         "additional cards."
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 952
+# File: src/Erebot/Module/Uno.php, line: 952
 msgid   "You must draw a card first"
 msgstr  ""
 #
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 790
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 864
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 996
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1260
-# File: /home/looksup/Documents/Erebot/modules/Uno/trunk/src/Erebot/Module/Uno.php, line: 1308
+# File: src/Erebot/Module/Uno.php, line: 790
+# File: src/Erebot/Module/Uno.php, line: 864
+# File: src/Erebot/Module/Uno.php, line: 996
+# File: src/Erebot/Module/Uno.php, line: 1260
+# File: src/Erebot/Module/Uno.php, line: 1308
 msgid   "Your cards: <for from=\"cards\" item=\"card\" separator=\" \"><var "
         "name=\"card\"/></for>"
 msgstr  ""
