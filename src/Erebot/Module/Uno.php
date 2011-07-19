@@ -19,13 +19,6 @@
 class   Erebot_Module_Uno
 extends Erebot_Module_Base
 {
-    static protected $_metadata = array(
-        'requires'  =>  array(
-            'Erebot_Module_TriggerRegistry',
-            'Erebot_Module_IrcTracker',
-            'Erebot_Module_Helper',
-        ),
-    );
     protected $_chans;
     protected $_db;
     protected $_creator;
@@ -38,9 +31,9 @@ extends Erebot_Module_Base
     public function install()
     {
         $this->_db->createDatabase();
-        $import = new Doctrine_Import_Schema();
-        $builder = new Doctrine_Import_Builder();
-        $array = $import->buildSchema(
+        $import     = new Doctrine_Import_Schema();
+        $builder    = new Doctrine_Import_Builder();
+        $array      = $import->buildSchema(
             array(dirname(__FILE__).'/model.yml'),
             'yml'
         );
