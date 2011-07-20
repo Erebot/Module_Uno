@@ -410,7 +410,10 @@ extends Erebot_Module_Base
         $this->handleShowTurn($synEvent);
     }
 
-    public function handleCreate(Erebot_Interface_Event_ChanText $event)
+    public function handleCreate(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $nick       =   $event->getSource();
         $chan       =   $event->getChan();
@@ -636,7 +639,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleChallenge(Erebot_Interface_Event_ChanText $event)
+    public function handleChallenge(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
@@ -748,7 +754,10 @@ extends Erebot_Module_Base
         $event->preventDefault(TRUE);
     }
 
-    public function handleChoose(Erebot_Interface_Event_ChanText $event)
+    public function handleChoose(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
@@ -781,7 +790,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleDraw(Erebot_Interface_Event_ChanText $event)
+    public function handleDraw(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
@@ -868,7 +880,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleJoin(Erebot_Interface_Event_ChanText $event)
+    public function handleJoin(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $nick       =   $event->getSource();
         $chan       =   $event->getChan();
@@ -969,7 +984,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handlePass(Erebot_Interface_Event_ChanText $event)
+    public function handlePass(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
@@ -1054,7 +1072,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handlePlay(Erebot_Interface_Event_ChanText $event)
+    public function handlePlay(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
@@ -1315,7 +1336,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleShowCardsCount(Erebot_Interface_Event_ChanText $event)
+    public function handleShowCardsCount(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
@@ -1364,7 +1388,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleShowDiscard(Erebot_Interface_Event_ChanText $event)
+    public function handleShowDiscard(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $translator =   $this->getTranslator($chan);
@@ -1413,7 +1440,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleShowOrder(Erebot_Interface_Event_ChanText $event)
+    public function handleShowOrder(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $translator =   $this->getTranslator($chan);
@@ -1439,7 +1469,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleShowTime(Erebot_Interface_Event_ChanText $event)
+    public function handleShowTime(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $current    =   $this->getCurrentPlayer($chan);
@@ -1462,7 +1495,10 @@ extends Erebot_Module_Base
         return $event->preventDefault(TRUE);
     }
 
-    public function handleShowTurn(Erebot_Interface_Event_ChanText $event)
+    public function handleShowTurn(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $chan       =   $event->getChan();
         $nick       =   $event->getSource();
