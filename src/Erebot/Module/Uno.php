@@ -85,10 +85,12 @@ extends Erebot_Module_Base
                 $triggerCreate,
                 $matchAny
             );
-            if ($this->_creator['trigger'] === NULL)
-                throw new Exception($this->_translator->gettext(
+            if ($this->_creator['trigger'] === NULL) {
+                $translator = $this->getTranslator(FALSE);
+                throw new Exception($translator->gettext(
                     'Could not register UNO creation trigger'
                 ));
+            }
 
             $this->_creator['handler']  = new Erebot_EventHandler(
                 new Erebot_Callable(array($this, 'handleCreate')),
