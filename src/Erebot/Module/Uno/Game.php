@@ -47,26 +47,26 @@ class Erebot_Module_Uno_Game
         else
             $rules = 0;
 
-        $this->_creator         =&  $creator;
-        $this->_penalty         =   0;
-        $this->_drawnCard       =   NULL;
-        $this->_lastPenaltyCard =   NULL;
-        $this->_rules           =   $rules;
-        $deckClass              =   (
-                                        ($rules & self::RULES_UNLIMITED_DECK) ?
-                                        'Erebot_Module_Uno_Deck_Unlimited' :
-                                        'Erebot_Module_Uno_Deck_Official'
-                                    );
-        $this->_deck            =   new $deckClass();
-        $this->_players         =   array();
-        $this->_startTime       =   NULL;
-        $this->_challengeable   =   FALSE;
-        $this->_legalMove       =   FALSE;
+        $this->_creator         =& $creator;
+        $this->_penalty         = 0;
+        $this->_drawnCard       = NULL;
+        $this->_lastPenaltyCard = NULL;
+        $this->_rules           = $rules;
+        $deckClass              = (
+            ($rules & self::RULES_UNLIMITED_DECK) ?
+            'Erebot_Module_Uno_Deck_Unlimited' :
+            'Erebot_Module_Uno_Deck_Official'
+        );
+        $this->_deck            = new $deckClass();
+        $this->_players         = array();
+        $this->_startTime       = NULL;
+        $this->_challengeable   = FALSE;
+        $this->_legalMove       = FALSE;
     }
 
     public function __destruct()
     {
-        
+
     }
 
     public function & join($token)
@@ -103,16 +103,17 @@ class Erebot_Module_Uno_Game
         if (!is_string($labels))
             throw new Erebot_InvalidValueException('Invalid ruleset');
 
-        $rulesMapping   =   array(
-                                'loose_draw'    => self::RULES_LOOSE_DRAW,
-                                'chainable'     => self::RULES_CHAINABLE_PENALTIES,
-                                'reversible'    => self::RULES_REVERSIBLE_PENALTIES,
-                                'skippable'     => self::RULES_SKIPPABLE_PENALTIES,
-                                'cancelable'    => self::RULES_CANCELABLE_PENALTIES,    // Both spellings are correct,
-                                'cancellable'   => self::RULES_CANCELABLE_PENALTIES,    // but we prefer 'cancelable'.
-                                'unlimited'     => self::RULES_UNLIMITED_DECK,
-                                'multiple'      => self::RULES_MULTIPLE_CARDS,
-                            );
+        $rulesMapping   = array(
+            'loose_draw'    => self::RULES_LOOSE_DRAW,
+            'chainable'     => self::RULES_CHAINABLE_PENALTIES,
+            'reversible'    => self::RULES_REVERSIBLE_PENALTIES,
+            'skippable'     => self::RULES_SKIPPABLE_PENALTIES,
+            // Both spellings are correct, but we prefer 'cancelable'.
+            'cancelable'    => self::RULES_CANCELABLE_PENALTIES,
+            'cancellable'   => self::RULES_CANCELABLE_PENALTIES,
+            'unlimited'     => self::RULES_UNLIMITED_DECK,
+            'multiple'      => self::RULES_MULTIPLE_CARDS,
+        );
 
         $rules  = 0;
         $labels = strtolower($labels);
@@ -130,13 +131,13 @@ class Erebot_Module_Uno_Game
     {
         $labels         =   array();
         $rulesMapping   =   array(
-                                'loose_draw'    => self::RULES_LOOSE_DRAW,
-                                'chainable'     => self::RULES_CHAINABLE_PENALTIES,
-                                'reversible'    => self::RULES_REVERSIBLE_PENALTIES,
-                                'cancelable'    => self::RULES_CANCELABLE_PENALTIES,
-                                'unlimited'     => self::RULES_UNLIMITED_DECK,
-                                'multiple'      => self::RULES_MULTIPLE_CARDS,
-                            );
+            'loose_draw'    => self::RULES_LOOSE_DRAW,
+            'chainable'     => self::RULES_CHAINABLE_PENALTIES,
+            'reversible'    => self::RULES_REVERSIBLE_PENALTIES,
+            'cancelable'    => self::RULES_CANCELABLE_PENALTIES,
+            'unlimited'     => self::RULES_UNLIMITED_DECK,
+            'multiple'      => self::RULES_MULTIPLE_CARDS,
+        );
 
         foreach ($rulesMapping as $label => $mask) {
             if (($rules & $mask) == $mask)
@@ -145,8 +146,10 @@ class Erebot_Module_Uno_Game
 
         // 'skippable' is a subcase of 'cancelable'
         // and is therefore treated separately.
-        if (($rules & self::RULES_SKIPPABLE_PENALTIES) == self::RULES_SKIPPABLE_PENALTIES &&
-            ($rules & self::RULES_CANCELABLE_PENALTIES) != self::RULES_CANCELABLE_PENALTIES)
+        $skippable = self::RULES_SKIPPABLE_PENALTIES;
+        $cancelable = self::RULES_CANCELABLE_PENALTIES;
+        if (($rules & $skippable) == $skippable &&
+            ($rules & $cancelable) != $cancelable)
             $labels[] = 'skippable';
 
         sort($labels);
@@ -172,8 +175,10 @@ class Erebot_Module_Uno_Game
             );
         }
 
-        if (preg_match('/^([rbgy])([0-9]|\\+2)(?:\\1\\2)*$/', $card, $matches)) {
-            $count  = strlen($card) / (strlen($matches[1]) + strlen($matches[2]));
+        $colorCards = '/^([rbgy])([0-9]|\\+2)(?:\\1\\2)*$/';
+        if (preg_match($colorCards, $card, $matches)) {
+            $count  = strlen($card) / (strlen($matches[1]) +
+                        strlen($matches[2]));
             return array(
                 'card'  => $matches[1].$matches[2],
                 'color' => $matches[1],
@@ -182,7 +187,8 @@ class Erebot_Module_Uno_Game
         }
 
         if (preg_match('/^([rbgy])([rs])(?:\\1\\2)*$/', $card, $matches)) {
-            $count  = strlen($card) / (strlen($matches[1]) + strlen($matches[2]));
+            $count  = strlen($card) / (strlen($matches[1]) +
+                        strlen($matches[2]));
             return array(
                 'card'  => $matches[1].$matches[2],
                 'color' => $matches[1],
@@ -204,7 +210,9 @@ class Erebot_Module_Uno_Game
         $player     = $this->getCurrentPlayer();
 
         if ($card === NULL) {
-            throw new Erebot_Module_Uno_InvalidMoveException('Not a valid card');
+            throw new Erebot_Module_Uno_InvalidMoveException(
+                'Not a valid card'
+            );
         }
 
         $figure = substr($card['card'], 1);
@@ -214,17 +222,23 @@ class Erebot_Module_Uno_Game
         if (strlen($card['card']) == 2 && count($this->_players) != 2 &&
             strpos($figure, 'rs') !== FALSE && $card['count'] > 1)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
-                'You cannot play multiple reverses/skips in a non 1vs1 game', 1);
+                'You cannot play multiple reverses/skips in a non 1vs1 game',
+                1
+            );
 
         // Trying to play multiple cards at once.
         if (!($this->_rules & self::RULES_MULTIPLE_CARDS) && $card['count'] > 1)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
-                'You cannot play multiple cards', 2);
+                'You cannot play multiple cards',
+                2
+            );
 
         if (!($this->_rules & self::RULES_LOOSE_DRAW) &&
             $this->_drawnCard !== NULL && $card['card'] != $this->_drawnCard)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
-                'You may only play the card you just drew', 3);
+                'You may only play the card you just drew',
+                3
+            );
 
         $discard = $this->_deck->getLastDiscardedCard();
         if ($discard !== NULL &&
@@ -292,7 +306,10 @@ class Erebot_Module_Uno_Game
 
                 if (!in_array($card['card'], $allowed))
                     throw new Erebot_Module_Uno_MoveNotAllowedException(
-                        'You may not play that move now', 4, $allowed);
+                        'You may not play that move now',
+                        4,
+                        $allowed
+                    );
             }
 
             if ($card['card'][0] == 'w')
@@ -304,7 +321,10 @@ class Erebot_Module_Uno_Game
             if ($figure == substr($discard['card'], 1))
                 break;  // Same figure.
 
-            throw new Erebot_Module_Uno_MoveNotAllowedException('This move is not allowed', 3);
+            throw new Erebot_Module_Uno_MoveNotAllowedException(
+                'This move is not allowed',
+                3
+            );
         } while (0);
 
         // Remember last played penalty card.
