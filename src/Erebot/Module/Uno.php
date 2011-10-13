@@ -147,9 +147,9 @@ extends Erebot_Module_Base
             'show_turn'    => $this->parseString('trigger_show_turn', 'tu'),
         );
 
-        $bot        =&  $this->_connection->getBot();
-        $moduleName =   get_class();
-        $nbArgs     =   count($words);
+        $bot        = $this->_connection->getBot();
+        $moduleName = get_class();
+        $nbArgs     = count($words);
 
         if ($nbArgs == 1 && $words[0] == strtolower($moduleName)) {
             $msg = $translator->gettext(
