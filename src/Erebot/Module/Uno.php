@@ -1053,7 +1053,7 @@ extends Erebot_Module_Base
         }
 
         $nbDrawnCards   = count($drawnCards);
-        $vars           = arrays(
+        $vars           = array(
             'nick'  => $nick,
             'count' => $nbDrawnCards,
         );
@@ -1341,8 +1341,8 @@ extends Erebot_Module_Base
                     'Next player must respond correctly or pick '.
                     '<b><var name="count"/></b> cards',
                     array(
-                        'logo'  => $this->getLogo());
-                        'count' => $game->getPenalty());
+                        'logo'  => $this->getLogo(),
+                        'count' => $game->getPenalty(),
                     )
                 );
                 $this->sendMessage($chan, $msg);
@@ -1396,7 +1396,7 @@ extends Erebot_Module_Base
             array(
                 'logo'      => $this->getLogo(),
                 'counts'    => $counts,
-            ),
+            )
         );
         $this->sendMessage($chan, $msg);
 
