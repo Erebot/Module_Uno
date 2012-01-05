@@ -419,7 +419,10 @@ extends Erebot_Module_Base
         return $this->_chans[$chan]['game']->getCurrentPlayer();
     }
 
-    protected function showTurn(Erebot_Interface_Event_ChanText $event)
+    protected function showTurn(
+        Erebot_Interface_EventHandler   $handler,
+        Erebot_Interface_Event_ChanText $event
+    )
     {
         $synEvent = new Erebot_Event_ChanText(
             $event->getConnection(),
@@ -427,7 +430,7 @@ extends Erebot_Module_Base
             '',
             ''
         );
-        $this->handleShowTurn($synEvent);
+        $this->handleShowTurn($handler, $synEvent);
     }
 
     public function handleCreate(
@@ -777,7 +780,7 @@ extends Erebot_Module_Base
             $this->sendMessage($nick, $msg);
         }
 
-        $this->showTurn($event);
+        $this->showTurn($handler, $event);
         $event->preventDefault(TRUE);
     }
 
@@ -865,7 +868,7 @@ extends Erebot_Module_Base
                 )
             );
             $this->sendMessage($chan, $msg);
-            $this->showTurn($event);
+            $this->showTurn($handler, $event);
 
             $player = $game->getCurrentPlayer();
             $cardsTexts = array_map(
@@ -1008,7 +1011,7 @@ extends Erebot_Module_Base
                 $this->sendMessage($chan, $msg);
             }
 
-            $this->showTurn($event);
+            $this->showTurn($handler, $event);
             return $event->preventDefault(TRUE);
         }
 
@@ -1082,7 +1085,7 @@ extends Erebot_Module_Base
             $this->sendMessage($nick, $msg);
         }
 
-        $this->showTurn($event);
+        $this->showTurn($handler, $event);
 
         $player = $game->getCurrentPlayer();
         $cardsTexts = array_map(
@@ -1349,7 +1352,7 @@ extends Erebot_Module_Base
             }
         }
 
-        $this->showTurn($event);
+        $this->showTurn($handler, $event);
 
         $cards  =   array_map(array($this, 'getCardText'), $next->getCards());
         sort($cards);
