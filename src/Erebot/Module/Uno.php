@@ -975,7 +975,7 @@ extends Erebot_Module_Base
             unset($player);
 
             // Display playing order.
-            $this->handleShowOrder($event);
+            $this->handleShowOrder($handler, $event);
 
             $player         = $game->getCurrentPlayer();
             $currentNick    = (string) $player->getPlayer();
