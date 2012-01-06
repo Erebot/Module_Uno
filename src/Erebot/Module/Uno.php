@@ -718,6 +718,7 @@ extends Erebot_Module_Base
             array(
                 'nick'  => $lastNick,
                 'cards' => $cardsTexts,
+                'count' => count($cardsTexts),
             )
         );
         $this->sendMessage($nick, $msg);
@@ -1078,7 +1079,7 @@ extends Erebot_Module_Base
                 'You drew: <for from="cards" item="card" '.
                 'separator=" "><var name="card"/></for>',
                 array(
-                    'cards' => $cardsText,
+                    'cards' => $cardsTexts,
                     'count' => $nbDrawnCards,
                 )
             );
