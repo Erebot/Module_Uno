@@ -1141,22 +1141,22 @@ extends Erebot_Module_Base
         }
         catch (Erebot_Module_Uno_MoveNotAllowedException $e) {
             switch ($e->getCode()) {
-                case 1:
+                case Erebot_Module_Uno_MoveNotAllowedException::MULTIPLE_1VS1:
                     $msg = $fmt->_(
                         'You cannot play multiple reverses/skips '.
                         'in a non 1vs1 game'
                     );
                     break;
 
-                case 2:
+                case Erebot_Module_Uno_MoveNotAllowedException::MULTIPLE_CARDS:
                     $msg = $fmt->_('You cannot play multiple cards');
                     break;
 
-                case 3:
+                case Erebot_Module_Uno_MoveNotAllowedException::ONLY_DRAWN:
                     $msg = $fmt->_('You may only play the card you just drew');
                     break;
 
-                case 4:
+                default:
                     $allowed = $e->getAllowedCards();
                     if (!$allowed) {
                         $msg = $fmt->_('You cannot play that move now');
@@ -1182,10 +1182,6 @@ extends Erebot_Module_Base
                         $this->sendMessage($chan, $msg);
                     }
                     return $event->preventDefault(TRUE);
-
-                default:
-                    $msg = $fmt->_('You cannot play that move now');
-                    break;
             }
             $this->sendMessage($chan, $msg);
             return $event->preventDefault(TRUE);
@@ -1340,16 +1336,43 @@ extends Erebot_Module_Base
             }
 
             if ($game->getPenalty()) {
-                $msg = $fmt->_(
-                    '<var name="logo"/> '.
-                    'Next player must respond correctly or pick '.
-                    '<b><var name="count"/></b> cards',
-                    array(
-                        'logo'  => $this->getLogo(),
-                        'count' => $game->getPenalty(),
-                    )
-                );
-                $this->sendMessage($chan, $msg);
+                // The next player has a way to avoid the penalty.
+                if ($game->getRules(FALSE) &
+                    Erebot_Module_Uno_Game::RULES_PENALTIES_MASK) {
+                    $msg = $fmt->_(
+                        '<var name="logo"/> '.
+                        'Next player must respond correctly or pick '.
+                        '<b><var name="count"/></b> cards',
+                        array(
+                            'logo'  => $this->getLogo(),
+                            'count' => $game->getPenalty(),
+                        )
+                    );
+                    $this->sendMessage($chan, $msg);
+                }
+                // No way to avoid the penalty... so be it.
+                else {
+                    $msg = $fmt->_(
+                        '<var name="logo"/> Next player must pick '.
+                        '<b><var name="count"/></b> cards',
+                        array(
+                            'logo'  => $this->getLogo(),
+                            'count' => $game->getPenalty(),
+                        )
+                    );
+                    $this->sendMessage();
+
+                    $next       = $this->getCurrentPlayer($chan);
+                    if ($next === NULL) return;
+                    $nextNick   = (string) $next->getPlayer();
+                    $drawEvent  = new Erebot_Interface_Event_ChanText(
+                        $event->getConnection(),
+                        $event->getChan(),
+                        $nextNick,
+                        ''
+                    );
+                    $this->handleDraw($handler, $drawEvent);
+                }
             }
         }
 

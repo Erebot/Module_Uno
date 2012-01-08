@@ -26,6 +26,8 @@ class Erebot_Module_Uno_Game
     const RULES_UNLIMITED_DECK          = 0x20;
     const RULES_MULTIPLE_CARDS          = 0x40;
 
+    const RULES_PENALTIES_MASK          = 0x1E;
+
     protected $_penalty;
     protected $_lastPenaltyCard;
     protected $_rules;
@@ -223,21 +225,21 @@ class Erebot_Module_Uno_Game
             strpos($figure, 'rs') !== FALSE && $card['count'] > 1)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
                 'You cannot play multiple reverses/skips in a non 1vs1 game',
-                1
+                Erebot_Module_Uno_MoveNotAllowedException::MULTIPLE_1VS1
             );
 
         // Trying to play multiple cards at once.
         if (!($this->_rules & self::RULES_MULTIPLE_CARDS) && $card['count'] > 1)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
                 'You cannot play multiple cards',
-                2
+                Erebot_Module_Uno_MoveNotAllowedException::MULTIPLE_CARDS
             );
 
         if (!($this->_rules & self::RULES_LOOSE_DRAW) &&
             $this->_drawnCard !== NULL && $card['card'] != $this->_drawnCard)
             throw new Erebot_Module_Uno_MoveNotAllowedException(
                 'You may only play the card you just drew',
-                3
+                Erebot_Module_Uno_MoveNotAllowedException::ONLY_DRAWN
             );
 
         $discard = $this->_deck->getLastDiscardedCard();
@@ -307,7 +309,7 @@ class Erebot_Module_Uno_Game
                 if (!in_array($card['card'], $allowed))
                     throw new Erebot_Module_Uno_MoveNotAllowedException(
                         'You may not play that move now',
-                        4,
+                        Erebot_Module_Uno_MoveNotAllowedException::NOT_PLAYABLE,
                         $allowed
                     );
             }
@@ -323,7 +325,7 @@ class Erebot_Module_Uno_Game
 
             throw new Erebot_Module_Uno_MoveNotAllowedException(
                 'This move is not allowed',
-                3
+                Erebot_Module_Uno_MoveNotAllowedException::NOT_PLAYABLE
             );
         } while (0);
 
