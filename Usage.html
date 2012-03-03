@@ -2,17 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Usage &mdash; Erebot_Module_Uno v0.1.1snapshot224 documentation</title>
+    <title>Usage &mdash; Erebot_Module_Uno 0.1.1snapshot306 documentation</title>
+    
     <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.1.1snapshot224',
+        VERSION:     '0.1.1snapshot306',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -22,9 +25,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="search" type="application/opensearchdescription+xml"
-          title="Search within Erebot_Module_Uno v0.1.1snapshot224 documentation"
+          title="Search within Erebot_Module_Uno 0.1.1snapshot306 documentation"
           href="_static/opensearch.xml"/>
-    <link rel="top" title="Erebot_Module_Uno v0.1.1snapshot224 documentation" href="index.html" />
+    <link rel="top" title="Erebot_Module_Uno 0.1.1snapshot306 documentation" href="index.html" />
     <link rel="prev" title="Configuration" href="Configuration.html" /> 
   </head>
   <body>
@@ -34,7 +37,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="Configuration.html" title="Configuration"
              accesskey="P">previous</a></li>
-        <li><a href="index.html">Erebot_Module_Uno v0.1.1snapshot224 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Erebot_Module_Uno 0.1.1snapshot306 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -60,12 +63,12 @@ for more information on how to customize triggers.</p>
 <col width="61%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Command</th>
+<tr class="row-odd"><th class="head">Command</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="samp docutils literal"><span class="pre">!uno</span> <em><span class="pre">variations</span></em></tt></td>
+<tr class="row-even"><td><tt class="samp docutils literal"><span class="pre">!uno</span> <em><span class="pre">variations</span></em></tt></td>
 <td>Start a new Uno game using the given
 <a class="reference internal" href="#variations"><em>variations</em></a>.
 If no variations are selected, default
@@ -73,38 +76,38 @@ variations (if configured by the bot&#8217;s
 administrator) or strict rules will
 apply.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">ca</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">ca</span></tt></td>
 <td>Display the number of remaining cards in
 each player&#8217;s hand.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">cd</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">cd</span></tt></td>
 <td>Display the last played (and thus
 discarded) card.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">ch</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">ch</span></tt></td>
 <td>Challenge the previous &#8220;Wild +4&#8221;. See the
 official rules for more information on
 challenges.</td>
 </tr>
-<tr><td><tt class="samp docutils literal"><span class="pre">co</span> <em><span class="pre">color</span></em></tt></td>
+<tr class="row-even"><td><tt class="samp docutils literal"><span class="pre">co</span> <em><span class="pre">color</span></em></tt></td>
 <td>Choose the new color to use after a
 &#8220;Wild&#8221; card was played. The color&#8217;s name
 must be given using only its first letter
 (&#8220;b&#8221; for &#8220;blue, &#8220;y&#8221; for yellow, &#8220;g&#8221; for
 green or &#8220;r&#8221; for red).</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">jo</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">jo</span></tt></td>
 <td>Join a currently started Uno game.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">od</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">od</span></tt></td>
 <td>Display playing order.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">pa</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">pa</span></tt></td>
 <td>Pass instead of playing. This command can
 only be used after <tt class="docutils literal"><span class="pre">pe</span></tt>. This command
 can also be used to draw penalty cards.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">pe</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">pe</span></tt></td>
 <td>Draw a card instead of playing. Must be
 used prior to using <tt class="docutils literal"><span class="pre">pa</span></tt>.
 If the <tt class="docutils literal"><span class="pre">loose_draw</span></tt>
@@ -115,7 +118,7 @@ you may choose to play it directly
 using <tt class="samp docutils literal"><span class="pre">pl</span> <em><span class="pre">card</span></em></tt>. This command can
 also be used to draw penalty cards.</td>
 </tr>
-<tr><td><tt class="samp docutils literal"><span class="pre">pl</span> <em><span class="pre">card</span></em></tt></td>
+<tr class="row-odd"><td><tt class="samp docutils literal"><span class="pre">pl</span> <em><span class="pre">card</span></em></tt></td>
 <td>Play the given <em>card</em> (see
 <a class="reference internal" href="#mnemonics"><em>Mnemonics for cards</em></a> for the full syntax).
 If the <tt class="docutils literal"><span class="pre">multiple</span></tt>
@@ -127,11 +130,11 @@ use directly after the card&#8217;s name.
 Thus, <tt class="docutils literal"><span class="pre">pl</span> <span class="pre">w+4r</span></tt> is identical to
 <tt class="docutils literal"><span class="pre">pl</span> <span class="pre">w+4</span></tt> followed by <tt class="docutils literal"><span class="pre">co</span> <span class="pre">r</span></tt>.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">ti</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">ti</span></tt></td>
 <td>Display information on how long the
 current game has been running for.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">tu</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">tu</span></tt></td>
 <td>Display the name of the player whose turn
 it is to play.</td>
 </tr>
@@ -160,30 +163,30 @@ of the card they refer to:</p>
 <col width="68%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Mnemonic</th>
+<tr class="row-odd"><th class="head">Mnemonic</th>
 <th class="head">Actual card</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">g0</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">g0</span></tt></td>
 <td>&#8220;Green 0&#8221;</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">b9</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">b9</span></tt></td>
 <td>&#8220;Blue 9&#8221;</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">rr</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">rr</span></tt></td>
 <td>&#8220;Red Reverse&#8221;</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">ys</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">ys</span></tt></td>
 <td>&#8220;Yellow Skip&#8221;</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">g+2</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">g+2</span></tt></td>
 <td>&#8220;Green +2&#8221;</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">w</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">w</span></tt></td>
 <td>&#8220;Wild&#8221;</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">w+4</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">w+4</span></tt></td>
 <td>&#8220;Wild +4&#8221;</td>
 </tr>
 </tbody>
@@ -201,12 +204,12 @@ and that&#8217;s why this game is so much fun!</p>
 <col width="73%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">Rule</th>
+<tr class="row-odd"><th class="head">Rule</th>
 <th class="head">Description</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td><tt class="docutils literal"><span class="pre">cancelable</span></tt> or
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">cancelable</span></tt> or
 <tt class="docutils literal"><span class="pre">cancellable</span></tt></td>
 <td>Penalties can be cancelled using a &#8220;Skip&#8221; card of
 the appropriate color. Eg. if someone plays &#8220;y+2&#8221;
@@ -216,23 +219,23 @@ Yellow +2 had never been played and no player
 shall draw any cards as a result of it having
 been played.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">chainable</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">chainable</span></tt></td>
 <td>Penalties can be chained together. Eg. if someone
 plays &#8220;y+2&#8221; (Yellow +2) and the next person plays
 &#8220;w+4&#8221; (Wild +4), the player after that must play
 another &#8220;w+4&#8221; or draw 6 cards (2 for the original
 &#8220;y+2&#8221; and 4 for the additional &#8220;w+4&#8221;).</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">loose_draw</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">loose_draw</span></tt></td>
 <td>A card may be played right after it was drawn.
 (without waiting for the player&#8217;s next turn)</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">multiple</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">multiple</span></tt></td>
 <td>Multiple cards with the same name can be played
 together. Eg. you may play two &#8220;Yellow 1&#8221; at the
 same time using this command: <tt class="docutils literal"><span class="pre">pl</span> <span class="pre">y1y1</span></tt>.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">reversible</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">reversible</span></tt></td>
 <td>Penalties may be reversed using a &#8220;Reverse&#8221; card
 of the appropriate color. Eg. if someone plays
 &#8220;y+2&#8221; (Yellow +2) and the person after that plays
@@ -241,7 +244,7 @@ original penalty card (Yellow +2) must now draw
 2 cards instead of the person who used the
 Yellow Reverse.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">skippable</span></tt></td>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">skippable</span></tt></td>
 <td>Penalties can be skipped using a &#8220;Skip&#8221; card of
 the appropriate color. Eg. if someone plays &#8220;y+2&#8221;
 (Yellow +2) and the person after that plays &#8220;ys&#8221;
@@ -250,7 +253,7 @@ Yellow Skip won&#8217;t have to draw the penalty cards.
 Instead, the person playing after that will have
 to draw the 2 additional cards.</td>
 </tr>
-<tr><td><tt class="docutils literal"><span class="pre">unlimited</span></tt></td>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">unlimited</span></tt></td>
 <td>The game is played with an unlimited number of
 cards. This makes it impossible to predict the
 other players&#8217; move based on what cards have been
@@ -311,12 +314,12 @@ of just the set of remaining cards in the deck.</td>
         <li class="right" style="margin-right: 10px">
           <a href="Configuration.html" title="Configuration"
              >previous</a></li>
-        <li><a href="index.html">Erebot_Module_Uno v0.1.1snapshot224 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Erebot_Module_Uno 0.1.1snapshot306 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2011, Erebot.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.8.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
