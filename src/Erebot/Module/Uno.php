@@ -164,16 +164,17 @@ extends Erebot_Module_Base
         if ($nbArgs == 1 && $words[0] == strtolower($moduleName)) {
             $msg = $fmt->_(
                 'Provides the <b><var name="trigger_create"/></b> command '.
-                'which starts a new Uno game. Once a game has been created, '.
-                'other commands become available to interact with the bot '.
-                '(<for item="command" from="commands"><b><var '.
+                'which starts a new <var name="logo"/> game. Once a game has '.
+                'been created, other commands become available to interact '.
+                'with the bot (<for item="command" from="commands"><b><var '.
                 'name="command"/></b></for>). Use "!help <var '.
-                'name="module"/>&lt;<u>command</u>&gt;" to get help '.
-                'on some &lt;<u>command</u>&gt;.',
+                'name="module"/>&lt;<u>command</u>&gt;" when the game is '.
+                'running to get help on a &lt;<u>command</u>&gt;.',
                 array(
                     'trigger_create' => $triggerCreate,
                     'commands'=> $commands,
                     'module' => $moduleName,
+                    'logo' => $this->getLogo(),
                 )
             );
             $this->sendMessage($target, $msg);
