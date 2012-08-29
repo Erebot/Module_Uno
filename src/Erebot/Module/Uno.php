@@ -186,9 +186,9 @@ extends Erebot_Module_Base
             $resetCode = Erebot_Interface_Styling::CODE_RESET;
             $vars = array(
                 'w'     => $this->getCardText('w'),
-                'w+4'   => $this->getCardText('w+4'),
+                'w_4'   => $this->getCardText('w+4'),
                 'r1'    => $this->getCardText('r1'),
-                'r+2'   => $this->getCardText('r+2'),
+                'r_2'   => $this->getCardText('r+2'),
                 'rs'    => $this->getCardText('rs'),
                 'rr'    => $this->getCardText('rr'),
                 'logo'  => $this->getLogo(),
@@ -203,10 +203,10 @@ extends Erebot_Module_Base
                         case 'challenge':
                             $msg = $fmt->_(
                                 'You may only use this command after someone '.
-                                'played a <var name="w+4"/> and no other '.
+                                'played a <var name="w_4"/> and no other '.
                                 'penalty had been played before. It shows you '.
                                 'the hand of the player you challenged. '.
-                                'If that person played a <var name="w+4"/> '.
+                                'If that person played a <var name="w_4"/> '.
                                 'while he or she had a card of the proper '.
                                 'color (except for special cards like +2, '.
                                 'Skip or Reverse), that player must draw 4 '.
@@ -219,7 +219,7 @@ extends Erebot_Module_Base
                         case 'choose':
                             $msg = $fmt->_(
                                 'Select the new color after you played a '.
-                                '<var name="w"/> or <var name="w+4"/>, eg. '.
+                                '<var name="w"/> or <var name="w_4"/>, eg. '.
                                 '"<var name="choose"/> &lt;<u>color</u>&gt;". '.
                                 'Valid &lt;<u>color</u>&gt;s: <b>r</b> (red), '.
                                 '<b>b</b> (blue), <b>g</b> (green) &amp; '.
@@ -267,7 +267,7 @@ extends Erebot_Module_Base
                                 '"<var name="play"/> r1" to play '.
                                 '<var name="r1"/><var name="reset"/>, '.
                                 '"<var name="play"/> r+2" to play '.
-                                '<var name="r+2"/><var name="reset"/>, '.
+                                '<var name="r_2"/><var name="reset"/>, '.
                                 '"<var name="play"/> rs" to play '.
                                 '<var name="rs"/><var name="reset"/>, '.
                                 '"<var name="play"/> rr" to play '.
@@ -275,7 +275,7 @@ extends Erebot_Module_Base
                                 '"<var name="play"/> w" to play '.
                                 '<var name="w"/><var name="reset"/> and '.
                                 '"<var name="play"/> w+4" to play '.
-                                '<var name="w+4"/><var name="reset"/>.',
+                                '<var name="w_4"/><var name="reset"/>.',
                                 $vars
                             );
                             break;
