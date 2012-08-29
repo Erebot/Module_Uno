@@ -183,8 +183,7 @@ extends Erebot_Module_Base
         else if (($words[0] == $moduleName || isset($this->_chans[$chan])) &&
                 $nbArgs > 1) {
 
-            $reflector = new ReflectionObject($formatter);
-            $resetCode = $reflector->getConstant('CODE_RESET');
+            $resetCode = Erebot_Interface_Styling::CODE_RESET;
             $vars = array(
                 'w'     => $this->getCardText('w'),
                 'w+4'   => $this->getCardText('w+4'),
@@ -1166,7 +1165,7 @@ extends Erebot_Module_Base
                     $msg = $fmt->_('You may only play the card you just drew');
                     break;
 
-                default:
+                default:{
                     $allowed = $e->getAllowedCards();
                     if (!$allowed) {
                         $msg = $fmt->_('You cannot play that move now');
@@ -1192,6 +1191,7 @@ extends Erebot_Module_Base
                         $this->sendMessage($chan, $msg);
                     }
                     return $event->preventDefault(TRUE);
+                }
             }
             $this->sendMessage($chan, $msg);
             return $event->preventDefault(TRUE);
