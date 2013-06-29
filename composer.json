@@ -1,5 +1,5 @@
 {
-    "name": "erebot/erebot-module-uno",
+    "name": "erebot/uno-module",
     "description": "Erebot module that provides the Uno game",
     "keywords": ["Erebot", "IRC", "bot", "module"],
     "homepage": "https://github.com/Erebot/Erebot_Module_Uno",
@@ -20,15 +20,21 @@
     },
     "repositories": [
         {
-            "type": "pear",
-            "url": "http://pear.php.net"
+            "type": "composer",
+            "url": "http://packages.erebot.net"
         }
     ],
     "require": {
         "php": ">=5.2.2",
-        "erebot/erebot-api": "*",
-        "erebot/erebot-module-irctracker": "*",
-        "erebot/erebot-module-triggerregistry": "*"
+        "erebot/triggerregistry-module": "dev-master",
+        "erebot/irctracker-module": "dev-master",
+        "erebot/api": "dev-master",
+        "erebot/installers": "dev-master",
+        "erebot/generic-doc": "dev-master"
+    },
+    "require-dev": {
+        "erebot/buildenv": "dev-master",
+        "erebot/testenv": "dev-master"
     },
     "autoload": {
         "psr-0": {
