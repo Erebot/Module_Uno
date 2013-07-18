@@ -171,13 +171,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Erebot_Module_IrcTracker.git",
-                "reference": "eb9b534b9e413ffcef348c140ebf27efb5ef0a2b"
+                "reference": "f03f374f07c9ad9d103889dd2d382c452acf74cb"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://packages.erebot.net:943/composer/erebot-irctracker-module-eb9b534b9e413ffcef348c140ebf27efb5ef0a2b-zip-b5d0ba.tar",
+                "url": "https://packages.erebot.net:943/composer/erebot-irctracker-module-f03f374f07c9ad9d103889dd2d382c452acf74cb-zip-10c3fa.tar",
                 "reference": "dev-master",
-                "shasum": "3fd3a85c73eefbf9d6fcc598bfa1079534b73acc"
+                "shasum": "63f20dd6d0481a21e3258f635d3579966da87aa5"
             },
             "require": {
                 "erebot/api": "dev-master",
@@ -225,7 +225,7 @@
                 "irc": "irc://irc.iiens.net/Erebot",
                 "source": "https://github.com/Erebot/Erebot_Module_IrcTracker"
             },
-            "time": "2013-07-18 15:16:57"
+            "time": "2013-07-18 16:13:15"
         },
         {
             "name": "erebot/triggerregistry-module",

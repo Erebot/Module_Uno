@@ -1166,7 +1166,7 @@ extends Erebot_Module_Base
                     $msg = $fmt->_('You may only play the card you just drew');
                     break;
 
-                default:{
+                default:
                     $allowed = $e->getAllowedCards();
                     if (!$allowed) {
                         $msg = $fmt->_('You cannot play that move now');
@@ -1192,7 +1192,6 @@ extends Erebot_Module_Base
                         $this->sendMessage($chan, $msg);
                     }
                     return $event->preventDefault(TRUE);
-                }
             }
             $this->sendMessage($chan, $msg);
             return $event->preventDefault(TRUE);
