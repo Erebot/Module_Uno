@@ -16,8 +16,9 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class   Erebot_Module_Uno_MoveNotAllowedException
-extends Erebot_Module_Uno_Exception
+namespace Erebot\Module\Uno;
+
+class MoveNotAllowedException extends \Erebot\Module\Uno\Exception
 {
     const NOT_ALLOWED = 0;
     const MULTIPLE_1VS1 = 1;
@@ -25,17 +26,16 @@ extends Erebot_Module_Uno_Exception
     const ONLY_DRAWN = 3;
     const NOT_PLAYABLE = 4;
 
-    protected $_allowed;
+    protected $allowed;
 
-    public function __construct($message, $code, $allowed = NULL)
+    public function __construct($message, $code, $allowed = null)
     {
         parent::__construct($message, $code);
-        $this->_allowed = $allowed;
+        $this->allowed = $allowed;
     }
 
     public function getAllowedCards()
     {
-        return $this->_allowed;
+        return $this->allowed;
     }
 }
-

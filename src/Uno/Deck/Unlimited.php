@@ -16,35 +16,37 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class   Erebot_Module_Uno_Deck_Unlimited
-extends Erebot_Module_Uno_Deck_Abstract
+namespace Erebot\Module\Uno\Deck;
+
+class Unlimited extends \Erebot\Module\Uno\AbstractDeck
 {
-    protected $_discarded;
-    protected $_firstCard;
+    protected $discarded;
+    protected $firstCard;
 
     public function __construct()
     {
-        $this->_discarded = NULL;
+        $this->discarded = null;
         $this->chooseFirstCard();
     }
 
     protected function chooseFirstCard()
     {
         // Find the first (playable) card.
-        for ($this->_firstCard = $this->draw();
-            $this->_firstCard[0] == 'w';
-            )
+        for ($this->firstCard = $this->draw(); $this->firstCard[0] == 'w';) {
             ;
+        }
     }
 
     public function draw()
     {
-        $card   = mt_rand(0, 108);
+        $card = mt_rand(0, 108);
 
-        if ($card >= 104)
+        if ($card >= 104) {
             return 'w+4';
-        if ($card >= 100)
+        }
+        if ($card >= 100) {
             return 'w';
+        }
 
         $colors = array('r', 'g', 'b', 'y');
         $perCol = 18    // cards from 1 to 9 (2 each)
@@ -55,24 +57,29 @@ extends Erebot_Module_Uno_Deck_Abstract
         $color  = $colors[(int) $card / $perCol];
         $card  %= $perCol;
 
-        if ($card < 18)
+        if ($card < 18) {
             return $color.(($card % 9) + 1);
-        if ($card < 19)
+        }
+        if ($card < 19) {
             return $color.'0';
-        if ($card < 21)
+        }
+        if ($card < 21) {
             return $color.'+2';
-        if ($card < 23)
+        }
+        if ($card < 23) {
             return $color.'r';
-        if ($card < 25)
+        }
+        if ($card < 25) {
             return $color.'s';
+        }
 
-        throw new Erebot_Module_Uno_InternalErrorException();
+        throw new \Erebot\Module\Uno\InternalErrorException();
     }
 
     public function discard($card)
     {
         parent::discard($card);
-        $this->_discarded = $this->extractCard($card);
+        $this->discarded = $this->extractCard($card);
     }
 
     public function shuffle()
@@ -82,12 +89,12 @@ extends Erebot_Module_Uno_Deck_Abstract
 
     public function getLastDiscardedCard()
     {
-        return $this->_discarded;
+        return $this->discarded;
     }
 
     public function getRemainingCardsCount()
     {
-        return NULL;
+        return null;
     }
 
     public function chooseColor($color)
@@ -95,7 +102,6 @@ extends Erebot_Module_Uno_Deck_Abstract
         parent::chooseColor($color);
         $last = $this->getLastDiscardedCard();
         $last['color']      = $color;
-        $this->_discarded   = $last;
+        $this->discarded   = $last;
     }
 }
-

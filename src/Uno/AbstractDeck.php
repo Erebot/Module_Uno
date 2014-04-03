@@ -16,38 +16,41 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-abstract class  Erebot_Module_Uno_Deck_Abstract
+namespace Erebot\Module\Uno;
+
+abstract class AbstractDeck
 {
-    protected $_firstCard = NULL;
-    protected $_waitingForColor = FALSE;
+    protected $firstCard = null;
+    protected $waitingForColor = false;
 
     public function extractCard($card)
     {
         if (is_array($card)) {
-            if (!isset($card['card']))
-                throw new Erebot_Module_Uno_InvalidMoveException();
+            if (!isset($card['card'])) {
+                throw new \Erebot\Module\Uno\InvalidMoveException();
+            }
             return $card;
         }
-        $card = Erebot_Module_Uno_Game::extractCard($card, NULL);
-        if ($card === NULL)
-            throw new Erebot_Module_Uno_InvalidMoveException();
+        $card = \Erebot\Module\Uno\Game::extractCard($card, null);
+        if ($card === null) {
+            throw new \Erebot\Module\Uno\InvalidMoveException();
+        }
         return $card;
     }
 
     final public function getFirstCard()
     {
-        return $this->_firstCard;
+        return $this->firstCard;
     }
 
     final public function isValidColor($color)
     {
-        return  (strlen($color) == 1 &&
-                strpos('rgby', $color) !== FALSE);
+        return  (strlen($color) == 1 && strpos('rgby', $color) !== false);
     }
 
     final public function isWaitingForColor()
     {
-        return $this->_waitingForColor;
+        return $this->waitingForColor;
     }
 
     abstract protected function chooseFirstCard();
@@ -60,26 +63,31 @@ abstract class  Erebot_Module_Uno_Deck_Abstract
     public function chooseColor($color)
     {
         $color = strtolower($color);
-        if (!$this->isValidColor($color))
-            throw new Erebot_Module_Uno_InternalErrorException();
+        if (!$this->isValidColor($color)) {
+            throw new \Erebot\Module\Uno\InternalErrorException();
+        }
 
         $last = $this->getLastDiscardedCard();
-        if ($last === NULL)
-            throw new Erebot_Module_Uno_InternalErrorException();
+        if ($last === null) {
+            throw new \Erebot\Module\Uno\InternalErrorException();
+        }
 
-        if ($last['card'][0] != 'w' || !empty($last['color']))
-            throw new Erebot_Module_Uno_InternalErrorException();
-        $this->_waitingForColor = FALSE;
+        if ($last['card'][0] != 'w' || !empty($last['color'])) {
+            throw new \Erebot\Module\Uno\InternalErrorException();
+        }
+
+        $this->waitingForColor = false;
     }
 
     public function discard($card)
     {
-        if ($this->_waitingForColor)
-            throw new Erebot_Module_Uno_WaitingForColorException();
+        if ($this->waitingForColor) {
+            throw new \Erebot\Module\Uno\WaitingForColorException();
+        }
 
         $card = $this->extractCard($card);
-        if ($card['color'] === NULL)
-            $this->_waitingForColor = TRUE;
+        if ($card['color'] === null) {
+            $this->waitingForColor = true;
+        }
     }
 }
-

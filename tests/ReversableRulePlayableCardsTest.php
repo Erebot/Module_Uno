@@ -5,7 +5,7 @@ require_once(dirname(__FILE__).'/StrictRulePlayableCardsTest.php');
 class UnoReversableRulePlayableCardsTest
 extends UnoStrictRulePlayableCardsTest
 {
-    const RULES = Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES;
+    const RULES = \Erebot\Module\Uno\Game::RULES_REVERSIBLE_PENALTIES;
 
     public function testReversing()
     {

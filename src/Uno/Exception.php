@@ -16,8 +16,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class   Erebot_Module_Uno_MissingCardsException
-extends Erebot_Module_Uno_Exception
+namespace Erebot\Module\Uno;
+
+class Exception extends \Exception
 {
 }
-

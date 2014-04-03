@@ -16,8 +16,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class   Erebot_Module_Uno_WaitingForColorException
-extends Erebot_Module_Uno_Exception
+namespace Erebot\Module\Uno;
+
+class AlreadyDrewException extends \Erebot\Module\Uno\Exception
 {
 }
-

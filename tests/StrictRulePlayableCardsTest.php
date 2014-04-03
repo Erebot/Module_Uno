@@ -74,7 +74,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testSanity()
     {
@@ -84,7 +84,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testSanity2()
     {
@@ -94,7 +94,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testSanity3()
     {
@@ -104,7 +104,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testSanity4()
     {
@@ -121,7 +121,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testPlayWild2()
     {
@@ -180,7 +180,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testPlayAfterWild7()
     {
@@ -192,7 +192,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testChainPenalty()
     {
@@ -202,7 +202,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testChainPenalty2()
     {
@@ -212,7 +212,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testChainPenalty3()
     {
@@ -222,7 +222,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testChainPenalty4()
     {
@@ -232,7 +232,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testReversing()
     {
@@ -242,7 +242,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testReversing2()
     {
@@ -252,7 +252,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testReversing3()
     {
@@ -262,7 +262,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testReversing4()
     {
@@ -272,7 +272,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testCancelling()
     {
@@ -282,7 +282,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testCancelling2()
     {
@@ -292,7 +292,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testCancelling3()
     {
@@ -302,7 +302,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException   Erebot_Module_Uno_MoveNotAllowedException
+     * @expectedException   \Erebot\Module\Uno\MoveNotAllowedException
      */
     public function testCancelling4()
     {

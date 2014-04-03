@@ -17,40 +17,40 @@
 */
 
 class   UnoStub
-extends Erebot_Module_Uno_Game
+extends \Erebot\Module\Uno\Game
 {
     public function __construct($creator, $rules = 0)
     {
         parent::__construct($creator, $rules);
-        unset($this->_deck);
-        $this->_deck = new UnoDeckStub();
+        unset($this->deck);
+        $this->deck = new UnoDeckStub();
     }
 
     public function & join($player)
     {
-        $this->_players[]   = new UnoHandStub($player, $this->_deck);
-        $token              = end($this->_players);
-        if (count($this->_players) == 2)
-            $this->_startTime = time();
+        $this->players[]    = new UnoHandStub($player, $this->deck);
+        $token              = end($this->players);
+        if (count($this->players) == 2)
+            $this->startTime = time();
         return $token;
     }
 }
 
 class   UnoStub2
-extends Erebot_Module_Uno_Game
+extends \Erebot\Module\Uno\Game
 {}
 
 class   UnoDeckStub
-extends Erebot_Module_Uno_Deck_Official
+extends \Erebot\Module\Uno\Deck\Official
 {
     protected function chooseFirstCard()
     {
-        $this->_firstCard = NULL;
+        $this->firstCard = NULL;
     }
 }
 
 class   UnoHandStub
-extends Erebot_Module_Uno_Hand
+extends \Erebot\Module\Uno\Hand
 {
     public function hasCard($card, $count)
     {
@@ -65,7 +65,7 @@ extends Erebot_Module_Uno_Hand
             $card = $card['card'];
         }
 
-        $this->_deck->discard($card);
+        $this->deck->discard($card);
     }
 }
 

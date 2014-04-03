@@ -74,7 +74,7 @@ extends PHPUnit_Framework_TestCase
     {
         $uno = new UnoStub(
             'Clicky',
-            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+            \Erebot\Module\Uno\Game::RULES_REVERSIBLE_PENALTIES
         );
         $uno->join('foo');
         $uno->join('bar');
@@ -95,7 +95,7 @@ extends PHPUnit_Framework_TestCase
     {
         $uno = new UnoStub(
             'Clicky',
-            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+            \Erebot\Module\Uno\Game::RULES_REVERSIBLE_PENALTIES
         );
         $uno->join('foo');
         $uno->join('bar');
@@ -117,7 +117,7 @@ extends PHPUnit_Framework_TestCase
     {
         $uno = new UnoStub(
             'Clicky',
-            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+            \Erebot\Module\Uno\Game::RULES_REVERSIBLE_PENALTIES
         );
         $uno->join('foo');
         $uno->join('bar');
@@ -138,7 +138,7 @@ extends PHPUnit_Framework_TestCase
     {
         $uno = new UnoStub(
             'Clicky',
-            Erebot_Module_Uno_Game::RULES_REVERSIBLE_PENALTIES
+            \Erebot\Module\Uno\Game::RULES_REVERSIBLE_PENALTIES
         );
         $uno->join('foo');
         $uno->join('bar');
