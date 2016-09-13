@@ -170,9 +170,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
             return true;
         }
 
-        if (($words[0] === $moduleName || isset($this->chans[$chan])) &&
-                $nbArgs > 1) {
-
+        if (($words[0] === $moduleName || isset($this->chans[$chan])) && $nbArgs > 1) {
             $resetCode = \Erebot\StylingInterface::CODE_RESET;
             $vars = array(
                 'w'     => $this->getCardText('w'),
