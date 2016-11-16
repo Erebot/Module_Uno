@@ -26,7 +26,9 @@
     "require-dev": {
         "erebot/buildenv": "^1.1.0",
         "erebot/testenv": "^1.1.2",
-        "erebot/generic-doc": "*"
+        "erebot/generic-doc": "*",
+        "erebot/erebot": "*",
+        "ext-filter": "*"
     },
     "autoload": {
         "psr-4": {

@@ -422,6 +422,68 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         return $this->chans[$chan]['game']->getCurrentPlayer();
     }
 
+    public static function labelsToRules($labels)
+    {
+        if (!is_string($labels)) {
+            throw new \Erebot\InvalidValueException('Invalid ruleset');
+        }
+
+        $rulesMapping   = array(
+            'loose_draw'    => \Erebot\Module\Uno\Game::RULES_LOOSE_DRAW,
+            'chainable'     => \Erebot\Module\Uno\Game::RULES_CHAINABLE_PENALTIES,
+            'reversible'    => \Erebot\Module\Uno\Game::RULES_REVERSIBLE_PENALTIES,
+            'skippable'     => \Erebot\Module\Uno\Game::RULES_SKIPPABLE_PENALTIES,
+            // Both spellings are correct, but we prefer 'cancelable'.
+            'cancelable'    => \Erebot\Module\Uno\Game::RULES_CANCELABLE_PENALTIES,
+            'cancellable'   => \Erebot\Module\Uno\Game::RULES_CANCELABLE_PENALTIES,
+            'unlimited'     => \Erebot\Module\Uno\Game::RULES_UNLIMITED_DECK,
+            'multiple'      => \Erebot\Module\Uno\Game::RULES_MULTIPLE_CARDS,
+        );
+
+        $rules  = 0;
+        $labels = strtolower($labels);
+        $labels = explode(',', str_replace(' ', ',', $labels));
+
+        foreach ($labels as $label) {
+            $label = trim($label);
+            if (isset($rulesMapping[$label])) {
+                $rules |= $rulesMapping[$label];
+            }
+        }
+        return $rules;
+    }
+
+    public static function rulesToLabels($rules)
+    {
+        $labels         =   array();
+        $rulesMapping   =   array(
+            'loose_draw'    => \Erebot\Module\Uno\Game::RULES_LOOSE_DRAW,
+            'chainable'     => \Erebot\Module\Uno\Game::RULES_CHAINABLE_PENALTIES,
+            'reversible'    => \Erebot\Module\Uno\Game::RULES_REVERSIBLE_PENALTIES,
+            'cancelable'    => \Erebot\Module\Uno\Game::RULES_CANCELABLE_PENALTIES,
+            'unlimited'     => \Erebot\Module\Uno\Game::RULES_UNLIMITED_DECK,
+            'multiple'      => \Erebot\Module\Uno\Game::RULES_MULTIPLE_CARDS,
+        );
+
+        foreach ($rulesMapping as $label => $mask) {
+            if (($rules & $mask) == $mask) {
+                $labels[] = $label;
+            }
+        }
+
+        // 'skippable' is a subcase of 'cancelable'
+        // and is therefore treated separately.
+        $skippable = \Erebot\Module\Uno\Game::RULES_SKIPPABLE_PENALTIES;
+        $cancelable = \Erebot\Module\Uno\Game::RULES_CANCELABLE_PENALTIES;
+        if (($rules & $skippable) == $skippable &&
+            ($rules & $cancelable) != $cancelable) {
+            $labels[] = 'skippable';
+        }
+
+        sort($labels);
+        return $labels;
+    }
+
     protected function showTurn(
         \Erebot\Interfaces\EventHandler   $handler,
         \Erebot\Interfaces\Event\ChanText $event
@@ -455,10 +517,10 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
                 '</for>. Say "<b><var name="trigger"/></b>" '.
                 'to join it.',
                 array(
-                    'logo' => $this->getLogo(),
-                    'creator' => (string) $creator,
-                    'rules' => $infos['game']->getRules(true),
-                    'trigger' => $infos['triggers']['join'],
+                    'logo'      => $this->getLogo(),
+                    'creator'   => (string) $creator,
+                    'rules'     => self::rulesToLabels($infos['game']->getRules()),
+                    'trigger'   => $infos['triggers']['join'],
                 )
             );
             $this->sendMessage($chan, $msg);
@@ -503,7 +565,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         $infos['triggers']          =&  $triggers;
         $infos['game']              =   new \Erebot\Module\Uno\Game(
             $creator,
-            $rules
+            self::labelsToRules($rules)
         );
 
         $infos['handlers']['challenge'] = new \Erebot\EventHandler(
@@ -655,7 +717,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
             array(
                 'logo'      => $this->getLogo(),
                 'chan'      => $chan,
-                'rules'     => $infos['game']->getRules(true),
+                'rules'     => self::rulesToLabels($infos['game']->getRules()),
                 'trigger'   => $infos['triggers']['join'],
             )
         );
@@ -1335,7 +1397,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
 
             if ($game->getPenalty()) {
                 // The next player has a way to avoid the penalty.
-                if ($game->getRules(false) & \Erebot\Module\Uno\Game::RULES_PENALTIES_MASK) {
+                if ($game->getRules() & \Erebot\Module\Uno\Game::RULES_PENALTIES_MASK) {
                     $msg = $fmt->_(
                         '<var name="logo"/> '.
                         'Next player must respond correctly or pick '.

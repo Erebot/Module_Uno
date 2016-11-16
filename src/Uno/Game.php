@@ -42,28 +42,27 @@ class Game
     protected $legalMove;
     protected $drawnCard;
 
-    public function __construct($creator, $rules = 0)
+    public function __construct($creator, $rules = 0, \Erebot\Module\Uno\AbstractDeck $deck = null)
     {
-        if (is_numeric($rules)) {
-            $rules = intval($rules, 0);
-        } elseif (is_string($rules)) {
-            $rules = self::labelsToRules($rules);
-        } else {
-            $rules = 0;
+        if (!is_int($rules)) {
+            throw new \Erebot\InvalidValueException('Invalid ruleset');
         }
 
-        $deckClass              = (
-            ($rules & self::RULES_UNLIMITED_DECK) ?
-            '\\Erebot\\Module\\Uno\\Deck\\Unlimited' :
-            '\\Erebot\\Module\\Uno\\Deck\\Official'
-        );
+        if ($deck === null) {
+            $deckClass = (
+                ($rules & self::RULES_UNLIMITED_DECK) ?
+                '\\Erebot\\Module\\Uno\\Deck\\Unlimited' :
+                '\\Erebot\\Module\\Uno\\Deck\\Official'
+            );
+            $deck = new $deckClass();
+        }
 
         $this->creator          =& $creator;
         $this->penalty          = 0;
         $this->drawnCard        = null;
         $this->lastPenaltyCard  = null;
         $this->rules            = $rules;
-        $this->deck             = new $deckClass();
+        $this->deck             = $deck;
         $this->players          = array();
         $this->startTime        = null;
         $this->challengeable    = false;
@@ -97,68 +96,6 @@ class Game
             shuffle($this->players);
         }
         return $player;
-    }
-
-    public static function labelsToRules($labels)
-    {
-        if (!is_string($labels)) {
-            throw new \Erebot\InvalidValueException('Invalid ruleset');
-        }
-
-        $rulesMapping   = array(
-            'loose_draw'    => self::RULES_LOOSE_DRAW,
-            'chainable'     => self::RULES_CHAINABLE_PENALTIES,
-            'reversible'    => self::RULES_REVERSIBLE_PENALTIES,
-            'skippable'     => self::RULES_SKIPPABLE_PENALTIES,
-            // Both spellings are correct, but we prefer 'cancelable'.
-            'cancelable'    => self::RULES_CANCELABLE_PENALTIES,
-            'cancellable'   => self::RULES_CANCELABLE_PENALTIES,
-            'unlimited'     => self::RULES_UNLIMITED_DECK,
-            'multiple'      => self::RULES_MULTIPLE_CARDS,
-        );
-
-        $rules  = 0;
-        $labels = strtolower($labels);
-        $labels = explode(',', str_replace(' ', ',', $labels));
-
-        foreach ($labels as $label) {
-            $label = trim($label);
-            if (isset($rulesMapping[$label])) {
-                $rules |= $rulesMapping[$label];
-            }
-        }
-        return $rules;
-    }
-
-    public static function rulesToLabels($rules)
-    {
-        $labels         =   array();
-        $rulesMapping   =   array(
-            'loose_draw'    => self::RULES_LOOSE_DRAW,
-            'chainable'     => self::RULES_CHAINABLE_PENALTIES,
-            'reversible'    => self::RULES_REVERSIBLE_PENALTIES,
-            'cancelable'    => self::RULES_CANCELABLE_PENALTIES,
-            'unlimited'     => self::RULES_UNLIMITED_DECK,
-            'multiple'      => self::RULES_MULTIPLE_CARDS,
-        );
-
-        foreach ($rulesMapping as $label => $mask) {
-            if (($rules & $mask) == $mask) {
-                $labels[] = $label;
-            }
-        }
-
-        // 'skippable' is a subcase of 'cancelable'
-        // and is therefore treated separately.
-        $skippable = self::RULES_SKIPPABLE_PENALTIES;
-        $cancelable = self::RULES_CANCELABLE_PENALTIES;
-        if (($rules & $skippable) == $skippable &&
-            ($rules & $cancelable) != $cancelable) {
-            $labels[] = 'skippable';
-        }
-
-        sort($labels);
-        return $labels;
     }
 
     public static function extractCard($card, $withColor)
@@ -395,6 +332,9 @@ class Game
                 $skippedPlayer = $this->getCurrentPlayer();
             }
         } elseif ($card['card'][0] == 'w' && empty($card['color'])) {
+            if (!$player->getCardsCount()) {
+                $this->endTurn(true);
+            }
             throw new \Erebot\Module\Uno\WaitingForColorException();
         }
 
@@ -520,11 +460,8 @@ class Game
         return end($this->players);
     }
 
-    public function getRules($asText)
+    public function getRules()
     {
-        if ($asText) {
-            return $this->rulesToLabels($this->rules);
-        }
         return $this->rules;
     }
 
