@@ -1,0 +1,251 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2016, Erebot
+# This file is distributed under the same license as the Erebot_Module_Uno package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Erebot_Module_Uno 1.0.x-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-30 00:14+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+#
+# File: ../src/Configuration.rst, line: 10
+msgid "Configuration"
+msgstr "Configuration"
+#
+# File: ../src/Configuration.rst, line: 15
+msgid "Options"
+msgstr "Options"
+#
+# File: ../src/Configuration.rst, line: 17
+msgid "This module provides several configuration options."
+msgstr "This module provides several configuration options."
+#
+# File: ../src/Configuration.rst, line: 0
+msgid "Options for |project|"
+msgstr "Options for |project|"
+#
+# File: ../src/Configuration.rst, line: 22
+msgid "Name"
+msgstr "Name"
+#
+# File: ../src/Configuration.rst, line: 22
+msgid "Type"
+msgstr "Type"
+#
+# File: ../src/Configuration.rst, line: 22
+msgid "Default value"
+msgstr "Default value"
+#
+# File: ../src/Configuration.rst, line: 22
+msgid "Description"
+msgstr "Description"
+#
+# File: ../src/Configuration.rst, line: 25
+msgid "|trigger_uno|"
+msgstr "|trigger_uno|"
+#
+# File: ../src/Configuration.rst, line: 25
+# File: ../src/Configuration.rst, line: 28
+# File: ../src/Configuration.rst, line: 31
+# File: ../src/Configuration.rst, line: 35
+# File: ../src/Configuration.rst, line: 38
+# File: ../src/Configuration.rst, line: 42
+# File: ../src/Configuration.rst, line: 45
+# File: ../src/Configuration.rst, line: 48
+# File: ../src/Configuration.rst, line: 52
+# File: ../src/Configuration.rst, line: 55
+# File: ../src/Configuration.rst, line: 58
+# File: ../src/Configuration.rst, line: 62
+msgid "string"
+msgstr "string"
+#
+# File: ../src/Configuration.rst, line: 25
+msgid "\"uno\""
+msgstr "\"uno\""
+#
+# File: ../src/Configuration.rst, line: 25
+msgid "The command to use to start a new Uno game."
+msgstr "The command to use to start a new Uno game."
+#
+# File: ../src/Configuration.rst, line: 28
+msgid "|trigger_ch|"
+msgstr "|trigger_ch|"
+#
+# File: ../src/Configuration.rst, line: 28
+msgid "\"ch\""
+msgstr "\"ch\""
+#
+# File: ../src/Configuration.rst, line: 28
+msgid "The command to use to challenge a Wild +4."
+msgstr "The command to use to challenge a Wild +4."
+#
+# File: ../src/Configuration.rst, line: 31
+msgid "|trigger_co|"
+msgstr "|trigger_co|"
+#
+# File: ../src/Configuration.rst, line: 31
+msgid "\"co\""
+msgstr "\"co\""
+#
+# File: ../src/Configuration.rst, line: 31
+msgid "The command to use to choose a color after playing a Wild or Wild +4."
+msgstr "The command to use to choose a color after playing a Wild or Wild +4."
+#
+# File: ../src/Configuration.rst, line: 35
+msgid "|trigger_pe|"
+msgstr "|trigger_pe|"
+#
+# File: ../src/Configuration.rst, line: 35
+msgid "\"pe\""
+msgstr "\"pe\""
+#
+# File: ../src/Configuration.rst, line: 35
+msgid "The command to use to draw a card."
+msgstr "The command to use to draw a card."
+#
+# File: ../src/Configuration.rst, line: 38
+msgid "|trigger_jo|"
+msgstr "|trigger_jo|"
+#
+# File: ../src/Configuration.rst, line: 38
+msgid "\"jo\""
+msgstr "\"jo\""
+#
+# File: ../src/Configuration.rst, line: 38
+msgid "The command to use to join a game after it has been created."
+msgstr "The command to use to join a game after it has been created."
+#
+# File: ../src/Configuration.rst, line: 42
+msgid "|trigger_pa|"
+msgstr "|trigger_pa|"
+#
+# File: ../src/Configuration.rst, line: 42
+msgid "\"pa\""
+msgstr "\"pa\""
+#
+# File: ../src/Configuration.rst, line: 42
+msgid "The command to use to pass after drawing a card."
+msgstr "The command to use to pass after drawing a card."
+#
+# File: ../src/Configuration.rst, line: 45
+msgid "|trigger_pl|"
+msgstr "|trigger_pl|"
+#
+# File: ../src/Configuration.rst, line: 45
+msgid "\"pl\""
+msgstr "\"pl\""
+#
+# File: ../src/Configuration.rst, line: 45
+msgid "The command to use to play a card or combination of cards."
+msgstr "The command to use to play a card or combination of cards."
+#
+# File: ../src/Configuration.rst, line: 48
+msgid "|trigger_ca|"
+msgstr "|trigger_ca|"
+#
+# File: ../src/Configuration.rst, line: 48
+msgid "\"ca\""
+msgstr "\"ca\""
+#
+# File: ../src/Configuration.rst, line: 48
+msgid "The command to use to show how many cards each player has in his hand."
+msgstr "The command to use to show how many cards each player has in his hand."
+#
+# File: ../src/Configuration.rst, line: 52
+msgid "|trigger_cd|"
+msgstr "|trigger_cd|"
+#
+# File: ../src/Configuration.rst, line: 52
+msgid "\"cd\""
+msgstr "\"cd\""
+#
+# File: ../src/Configuration.rst, line: 52
+msgid "The command to use to show the last discarded card."
+msgstr "The command to use to show the last discarded card."
+#
+# File: ../src/Configuration.rst, line: 55
+msgid "|trigger_od|"
+msgstr "|trigger_od|"
+#
+# File: ../src/Configuration.rst, line: 55
+msgid "\"od\""
+msgstr "\"od\""
+#
+# File: ../src/Configuration.rst, line: 55
+msgid "The command to use to show playing order."
+msgstr "The command to use to show playing order."
+#
+# File: ../src/Configuration.rst, line: 58
+msgid "|trigger_ti|"
+msgstr "|trigger_ti|"
+#
+# File: ../src/Configuration.rst, line: 58
+msgid "\"ti\""
+msgstr "\"ti\""
+#
+# File: ../src/Configuration.rst, line: 58
+msgid "The command to use to show for how long a game has been running."
+msgstr "The command to use to show for how long a game has been running."
+#
+# File: ../src/Configuration.rst, line: 62
+msgid "|trigger_tu|"
+msgstr "|trigger_tu|"
+#
+# File: ../src/Configuration.rst, line: 62
+msgid "\"tu\""
+msgstr "\"tu\""
+#
+# File: ../src/Configuration.rst, line: 62
+msgid "The command to use to show whose player's turn it is."
+msgstr "The command to use to show whose player's turn it is."
+#
+# File: ../src/Configuration.rst, line: 65
+msgid "start_delay"
+msgstr "start_delay"
+#
+# File: ../src/Configuration.rst, line: 65
+msgid "integer"
+msgstr "integer"
+#
+# File: ../src/Configuration.rst, line: 65
+msgid "20"
+msgstr "20"
+#
+# File: ../src/Configuration.rst, line: 65
+msgid ""
+"How many seconds does the bot wait after enough players have joined the game "
+"before the game actually starts."
+msgstr ""
+"How many seconds does the bot wait after enough players have joined the game "
+"before the game actually starts."
+#
+# File: ../src/Configuration.rst, line: 72
+msgid ""
+"All triggers should be written without any prefixes. Moreover, triggers "
+"should only contain alphanumeric characters."
+msgstr ""
+"All triggers should be written without any prefixes. Moreover, triggers "
+"should only contain alphanumeric characters."
+#
+# File: ../src/Configuration.rst, line: 77
+msgid "Example"
+msgstr "Example"
+#
+# File: ../src/Configuration.rst, line: 79
+msgid ""
+"Here, we enable the Uno module at the general configuration level. Therefore, "
+"the game will be available on all networks/servers/channels. Of course, you "
+"can use a more restrictive configuration file if it suits your needs better."
+msgstr ""
+"Here, we enable the Uno module at the general configuration level. Therefore, "
+"the game will be available on all networks/servers/channels. Of course, you "
+"can use a more restrictive configuration file if it suits your needs better."

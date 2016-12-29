@@ -1,0 +1,331 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2016, Erebot
+# This file is distributed under the same license as the Erebot_Module_Uno package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Erebot_Module_Uno 1.0.x-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-30 00:14+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/Usage.rst:10
+msgid "Usage"
+msgstr ""
+
+#: ../src/Usage.rst:12
+msgid "This section assumes default values are used for all triggers. Please refer to :ref:`configuration options <configuration options>` for more information on how to customize triggers."
+msgstr ""
+
+#: ../src/Usage.rst:18
+msgid "Provided commands"
+msgstr ""
+
+#: ../src/Usage.rst:20
+msgid "This module provides the following commands:"
+msgstr ""
+
+#: ../src/Usage.rst:0
+msgid "Commands provided by |project|"
+msgstr ""
+
+#: ../src/Usage.rst:25
+msgid "Command"
+msgstr ""
+
+#: ../src/Usage.rst:25
+#: ../src/Usage.rst:142
+msgid "Description"
+msgstr ""
+
+#: ../src/Usage.rst:27
+msgid ":samp:`!uno {variations}`"
+msgstr ""
+
+#: ../src/Usage.rst:27
+msgid "Start a new Uno game using the given :ref:`variations <Variations>`. If no variations are selected, default variations (if configured by the bot's administrator) or strict rules will apply."
+msgstr ""
+
+#: ../src/Usage.rst:34
+msgid "``ca``"
+msgstr ""
+
+#: ../src/Usage.rst:34
+msgid "Display the number of remaining cards in each player's hand."
+msgstr ""
+
+#: ../src/Usage.rst:37
+msgid "``cd``"
+msgstr ""
+
+#: ../src/Usage.rst:37
+msgid "Display the last played (and thus discarded) card."
+msgstr ""
+
+#: ../src/Usage.rst:40
+msgid "``ch``"
+msgstr ""
+
+#: ../src/Usage.rst:40
+msgid "Challenge the previous \"Wild +4\". See the official rules for more information on challenges."
+msgstr ""
+
+#: ../src/Usage.rst:44
+msgid ":samp:`co {color}`"
+msgstr ""
+
+#: ../src/Usage.rst:44
+msgid "Choose the new color to use after a \"Wild\" card was played. The color's name must be given using only its first letter (\"b\" for \"blue, \"y\" for yellow, \"g\" for green or \"r\" for red)."
+msgstr ""
+
+#: ../src/Usage.rst:50
+msgid "``jo``"
+msgstr ""
+
+#: ../src/Usage.rst:50
+msgid "Join a currently started Uno game."
+msgstr ""
+
+#: ../src/Usage.rst:52
+msgid "``od``"
+msgstr ""
+
+#: ../src/Usage.rst:52
+msgid "Display playing order."
+msgstr ""
+
+#: ../src/Usage.rst:54
+msgid "``pa``"
+msgstr ""
+
+#: ../src/Usage.rst:54
+msgid "Pass instead of playing. This command can only be used after ``pe``. This command can also be used to draw penalty cards."
+msgstr ""
+
+#: ../src/Usage.rst:58
+msgid "``pe``"
+msgstr ""
+
+#: ../src/Usage.rst:58
+msgid "Draw a card instead of playing. Must be used prior to using ``pa``. If the ``loose_draw`` :ref:`variation <variations>` is in use and the card you just drew can be played, you may choose to play it directly (without waiting for your next turn) using :samp:`pl {card}`. This command can also be used to draw penalty cards."
+msgstr ""
+
+#: ../src/Usage.rst:68
+msgid ":samp:`pl {card}`"
+msgstr ""
+
+#: ../src/Usage.rst:68
+msgid "Play the given *card* (see :ref:`mnemonics` for the full syntax). If the ``multiple`` :ref:`variation <variations>` is enabled, several (identical) card names may be given. Also, as a shortcut when playing wild cards, you may pass the new color to use directly after the card's name. Thus, ``pl w+4r`` is identical to ``pl w+4`` followed by ``co r``."
+msgstr ""
+
+#: ../src/Usage.rst:79
+msgid "``ti``"
+msgstr ""
+
+#: ../src/Usage.rst:79
+msgid "Display information on how long the current game has been running for."
+msgstr ""
+
+#: ../src/Usage.rst:82
+msgid "``tu``"
+msgstr ""
+
+#: ../src/Usage.rst:82
+msgid "Display the name of the player whose turn it is to play."
+msgstr ""
+
+#: ../src/Usage.rst:90
+msgid "Mnemonics for cards"
+msgstr ""
+
+#: ../src/Usage.rst:92
+msgid "The general format used to refer to cards is the first letter of the card's color (in english) followed by the card's figure."
+msgstr ""
+
+#: ../src/Usage.rst:95
+msgid "The five following \"colors\" are available:"
+msgstr ""
+
+#: ../src/Usage.rst:97
+msgid "**r**\\ ed"
+msgstr ""
+
+#: ../src/Usage.rst:98
+msgid "**b**\\ lue"
+msgstr ""
+
+#: ../src/Usage.rst:99
+msgid "**g**\\ reen"
+msgstr ""
+
+#: ../src/Usage.rst:100
+msgid "**y**\\ ellow"
+msgstr ""
+
+#: ../src/Usage.rst:101
+msgid "**w**\\ ild"
+msgstr ""
+
+#: ../src/Usage.rst:103
+msgid "A \"wild\" card is one which can be played over any other color."
+msgstr ""
+
+#: ../src/Usage.rst:105
+msgid "The following table lists a few examples of valid mnemnics with the full name of the card they refer to:"
+msgstr ""
+
+#: ../src/Usage.rst:0
+msgid "Valid mnemonics for cards"
+msgstr ""
+
+#: ../src/Usage.rst:111
+msgid "Mnemonic"
+msgstr ""
+
+#: ../src/Usage.rst:111
+msgid "Actual card"
+msgstr ""
+
+#: ../src/Usage.rst:113
+msgid "``g0``"
+msgstr ""
+
+#: ../src/Usage.rst:113
+msgid "\"Green 0\""
+msgstr ""
+
+#: ../src/Usage.rst:115
+msgid "``b9``"
+msgstr ""
+
+#: ../src/Usage.rst:115
+msgid "\"Blue 9\""
+msgstr ""
+
+#: ../src/Usage.rst:117
+msgid "``rr``"
+msgstr ""
+
+#: ../src/Usage.rst:117
+msgid "\"Red Reverse\""
+msgstr ""
+
+#: ../src/Usage.rst:119
+msgid "``ys``"
+msgstr ""
+
+#: ../src/Usage.rst:119
+msgid "\"Yellow Skip\""
+msgstr ""
+
+#: ../src/Usage.rst:121
+msgid "``g+2``"
+msgstr ""
+
+#: ../src/Usage.rst:121
+msgid "\"Green +2\""
+msgstr ""
+
+#: ../src/Usage.rst:123
+msgid "``w``"
+msgstr ""
+
+#: ../src/Usage.rst:123
+msgid "\"Wild\""
+msgstr ""
+
+#: ../src/Usage.rst:125
+msgid "``w+4``"
+msgstr ""
+
+#: ../src/Usage.rst:125
+msgid "\"Wild +4\""
+msgstr ""
+
+#: ../src/Usage.rst:132
+msgid "Variations"
+msgstr ""
+
+#: ../src/Usage.rst:134
+msgid "This module features several variations (like chainable/reversible penalties) and that's why this game is so much fun!"
+msgstr ""
+
+#: ../src/Usage.rst:137
+msgid "The following table lists possible variations of the rules:"
+msgstr ""
+
+#: ../src/Usage.rst:0
+msgid "Rule variations supported by |project|"
+msgstr ""
+
+#: ../src/Usage.rst:142
+msgid "Rule"
+msgstr ""
+
+#: ../src/Usage.rst:144
+msgid "``cancelable`` or ``cancellable``"
+msgstr ""
+
+#: ../src/Usage.rst:144
+msgid "Penalties can be cancelled using a \"Skip\" card of the appropriate color. Eg. if someone plays \"y+2\" (Yellow +2) and the person after that plays \"ys\" (Yellow Skip), the game shall continue as if the Yellow +2 had never been played and no player shall draw any cards as a result of it having been played."
+msgstr ""
+
+#: ../src/Usage.rst:152
+msgid "``chainable``"
+msgstr ""
+
+#: ../src/Usage.rst:152
+msgid "Penalties can be chained together. Eg. if someone plays \"y+2\" (Yellow +2) and the next person plays \"w+4\" (Wild +4), the player after that must play another \"w+4\" or draw 6 cards (2 for the original \"y+2\" and 4 for the additional \"w+4\")."
+msgstr ""
+
+#: ../src/Usage.rst:158
+msgid "``loose_draw``"
+msgstr ""
+
+#: ../src/Usage.rst:158
+msgid "A card may be played right after it was drawn. (without waiting for the player's next turn)"
+msgstr ""
+
+#: ../src/Usage.rst:161
+msgid "``multiple``"
+msgstr ""
+
+#: ../src/Usage.rst:161
+msgid "Multiple cards with the same name can be played together. Eg. you may play two \"Yellow 1\" at the same time using this command: ``pl y1y1``."
+msgstr ""
+
+#: ../src/Usage.rst:165
+msgid "``reversible``"
+msgstr ""
+
+#: ../src/Usage.rst:165
+msgid "Penalties may be reversed using a \"Reverse\" card of the appropriate color. Eg. if someone plays \"y+2\" (Yellow +2) and the person after that plays \"yr\" (Yellow Reverse), the person who played the original penalty card (Yellow +2) must now draw 2 cards instead of the person who used the Yellow Reverse."
+msgstr ""
+
+#: ../src/Usage.rst:173
+msgid "``skippable``"
+msgstr ""
+
+#: ../src/Usage.rst:173
+msgid "Penalties can be skipped using a \"Skip\" card of the appropriate color. Eg. if someone plays \"y+2\" (Yellow +2) and the person after that plays \"ys\" (Yellow Skip), the person who played the Yellow Skip won't have to draw the penalty cards. Instead, the person playing after that will have to draw the 2 additional cards."
+msgstr ""
+
+#: ../src/Usage.rst:181
+msgid "``unlimited``"
+msgstr ""
+
+#: ../src/Usage.rst:181
+msgid "The game is played with an unlimited number of cards. This makes it impossible to predict the other players' move based on what cards have been played before, as new cards are dealt randomly each time from the set of all valid cards instead of just the set of remaining cards in the deck."
+msgstr ""
+
+#: ../src/Usage.rst:190
+msgid "Those variations can be mixed together (with the exception of the ``skippable`` and ``cancelable`` variations) to build even more complex (and fun) games."
+msgstr ""
+

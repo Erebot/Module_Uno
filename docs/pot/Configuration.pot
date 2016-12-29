@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2011-2016, Erebot
+# This file is distributed under the same license as the Erebot_Module_Uno package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Erebot_Module_Uno 1.0.x-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-30 00:14+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/Configuration.rst:10
+msgid "Configuration"
+msgstr ""
+
+#: ../src/Configuration.rst:15
+msgid "Options"
+msgstr ""
+
+#: ../src/Configuration.rst:17
+msgid "This module provides several configuration options."
+msgstr ""
+
+#: ../src/Configuration.rst:0
+msgid "Options for |project|"
+msgstr ""
+
+#: ../src/Configuration.rst:22
+msgid "Name"
+msgstr ""
+
+#: ../src/Configuration.rst:22
+msgid "Type"
+msgstr ""
+
+#: ../src/Configuration.rst:22
+msgid "Default value"
+msgstr ""
+
+#: ../src/Configuration.rst:22
+msgid "Description"
+msgstr ""
+
+#: ../src/Configuration.rst:25
+msgid "|trigger_uno|"
+msgstr ""
+
+#: ../src/Configuration.rst:25
+#: ../src/Configuration.rst:28
+#: ../src/Configuration.rst:31
+#: ../src/Configuration.rst:35
+#: ../src/Configuration.rst:38
+#: ../src/Configuration.rst:42
+#: ../src/Configuration.rst:45
+#: ../src/Configuration.rst:48
+#: ../src/Configuration.rst:52
+#: ../src/Configuration.rst:55
+#: ../src/Configuration.rst:58
+#: ../src/Configuration.rst:62
+msgid "string"
+msgstr ""
+
+#: ../src/Configuration.rst:25
+msgid "\"uno\""
+msgstr ""
+
+#: ../src/Configuration.rst:25
+msgid "The command to use to start a new Uno game."
+msgstr ""
+
+#: ../src/Configuration.rst:28
+msgid "|trigger_ch|"
+msgstr ""
+
+#: ../src/Configuration.rst:28
+msgid "\"ch\""
+msgstr ""
+
+#: ../src/Configuration.rst:28
+msgid "The command to use to challenge a Wild +4."
+msgstr ""
+
+#: ../src/Configuration.rst:31
+msgid "|trigger_co|"
+msgstr ""
+
+#: ../src/Configuration.rst:31
+msgid "\"co\""
+msgstr ""
+
+#: ../src/Configuration.rst:31
+msgid "The command to use to choose a color after playing a Wild or Wild +4."
+msgstr ""
+
+#: ../src/Configuration.rst:35
+msgid "|trigger_pe|"
+msgstr ""
+
+#: ../src/Configuration.rst:35
+msgid "\"pe\""
+msgstr ""
+
+#: ../src/Configuration.rst:35
+msgid "The command to use to draw a card."
+msgstr ""
+
+#: ../src/Configuration.rst:38
+msgid "|trigger_jo|"
+msgstr ""
+
+#: ../src/Configuration.rst:38
+msgid "\"jo\""
+msgstr ""
+
+#: ../src/Configuration.rst:38
+msgid "The command to use to join a game after it has been created."
+msgstr ""
+
+#: ../src/Configuration.rst:42
+msgid "|trigger_pa|"
+msgstr ""
+
+#: ../src/Configuration.rst:42
+msgid "\"pa\""
+msgstr ""
+
+#: ../src/Configuration.rst:42
+msgid "The command to use to pass after drawing a card."
+msgstr ""
+
+#: ../src/Configuration.rst:45
+msgid "|trigger_pl|"
+msgstr ""
+
+#: ../src/Configuration.rst:45
+msgid "\"pl\""
+msgstr ""
+
+#: ../src/Configuration.rst:45
+msgid "The command to use to play a card or combination of cards."
+msgstr ""
+
+#: ../src/Configuration.rst:48
+msgid "|trigger_ca|"
+msgstr ""
+
+#: ../src/Configuration.rst:48
+msgid "\"ca\""
+msgstr ""
+
+#: ../src/Configuration.rst:48
+msgid "The command to use to show how many cards each player has in his hand."
+msgstr ""
+
+#: ../src/Configuration.rst:52
+msgid "|trigger_cd|"
+msgstr ""
+
+#: ../src/Configuration.rst:52
+msgid "\"cd\""
+msgstr ""
+
+#: ../src/Configuration.rst:52
+msgid "The command to use to show the last discarded card."
+msgstr ""
+
+#: ../src/Configuration.rst:55
+msgid "|trigger_od|"
+msgstr ""
+
+#: ../src/Configuration.rst:55
+msgid "\"od\""
+msgstr ""
+
+#: ../src/Configuration.rst:55
+msgid "The command to use to show playing order."
+msgstr ""
+
+#: ../src/Configuration.rst:58
+msgid "|trigger_ti|"
+msgstr ""
+
+#: ../src/Configuration.rst:58
+msgid "\"ti\""
+msgstr ""
+
+#: ../src/Configuration.rst:58
+msgid "The command to use to show for how long a game has been running."
+msgstr ""
+
+#: ../src/Configuration.rst:62
+msgid "|trigger_tu|"
+msgstr ""
+
+#: ../src/Configuration.rst:62
+msgid "\"tu\""
+msgstr ""
+
+#: ../src/Configuration.rst:62
+msgid "The command to use to show whose player's turn it is."
+msgstr ""
+
+#: ../src/Configuration.rst:65
+msgid "start_delay"
+msgstr ""
+
+#: ../src/Configuration.rst:65
+msgid "integer"
+msgstr ""
+
+#: ../src/Configuration.rst:65
+msgid "20"
+msgstr ""
+
+#: ../src/Configuration.rst:65
+msgid "How many seconds does the bot wait after enough players have joined the game before the game actually starts."
+msgstr ""
+
+#: ../src/Configuration.rst:72
+msgid "All triggers should be written without any prefixes. Moreover, triggers should only contain alphanumeric characters."
+msgstr ""
+
+#: ../src/Configuration.rst:77
+msgid "Example"
+msgstr ""
+
+#: ../src/Configuration.rst:79
+msgid "Here, we enable the Uno module at the general configuration level. Therefore, the game will be available on all networks/servers/channels. Of course, you can use a more restrictive configuration file if it suits your needs better."
+msgstr ""
+

@@ -1,0 +1,181 @@
+# French translations for Erebot_Module_Uno package.
+# Copyright (C) 2011-2016, Erebot
+# This file is distributed under the same license as the Erebot_Module_Uno package.
+# Automatically generated, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Erebot_Module_Uno 1.0.x-dev\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-30 00:14+0100\n"
+"PO-Revision-Date: 2016-12-30 00:14+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#
+msgid "Configuration"
+msgstr ""
+#
+msgid "Options"
+msgstr ""
+#
+msgid "This module provides several configuration options."
+msgstr ""
+#
+msgid "Options for |project|"
+msgstr ""
+#
+msgid "Name"
+msgstr ""
+#
+msgid "Type"
+msgstr ""
+#
+msgid "Default value"
+msgstr ""
+#
+msgid "Description"
+msgstr ""
+#
+msgid "|trigger_uno|"
+msgstr ""
+#
+msgid "string"
+msgstr ""
+#
+msgid "\"uno\""
+msgstr ""
+#
+msgid "The command to use to start a new Uno game."
+msgstr ""
+#
+msgid "|trigger_ch|"
+msgstr ""
+#
+msgid "\"ch\""
+msgstr ""
+#
+msgid "The command to use to challenge a Wild +4."
+msgstr ""
+#
+msgid "|trigger_co|"
+msgstr ""
+#
+msgid "\"co\""
+msgstr ""
+#
+msgid "The command to use to choose a color after playing a Wild or Wild +4."
+msgstr ""
+#
+msgid "|trigger_pe|"
+msgstr ""
+#
+msgid "\"pe\""
+msgstr ""
+#
+msgid "The command to use to draw a card."
+msgstr ""
+#
+msgid "|trigger_jo|"
+msgstr ""
+#
+msgid "\"jo\""
+msgstr ""
+#
+msgid "The command to use to join a game after it has been created."
+msgstr ""
+#
+msgid "|trigger_pa|"
+msgstr ""
+#
+msgid "\"pa\""
+msgstr ""
+#
+msgid "The command to use to pass after drawing a card."
+msgstr ""
+#
+msgid "|trigger_pl|"
+msgstr ""
+#
+msgid "\"pl\""
+msgstr ""
+#
+msgid "The command to use to play a card or combination of cards."
+msgstr ""
+#
+msgid "|trigger_ca|"
+msgstr ""
+#
+msgid "\"ca\""
+msgstr ""
+#
+msgid "The command to use to show how many cards each player has in his hand."
+msgstr ""
+#
+msgid "|trigger_cd|"
+msgstr ""
+#
+msgid "\"cd\""
+msgstr ""
+#
+msgid "The command to use to show the last discarded card."
+msgstr ""
+#
+msgid "|trigger_od|"
+msgstr ""
+#
+msgid "\"od\""
+msgstr ""
+#
+msgid "The command to use to show playing order."
+msgstr ""
+#
+msgid "|trigger_ti|"
+msgstr ""
+#
+msgid "\"ti\""
+msgstr ""
+#
+msgid "The command to use to show for how long a game has been running."
+msgstr ""
+#
+msgid "|trigger_tu|"
+msgstr ""
+#
+msgid "\"tu\""
+msgstr ""
+#
+msgid "The command to use to show whose player's turn it is."
+msgstr ""
+#
+msgid "start_delay"
+msgstr ""
+#
+msgid "integer"
+msgstr ""
+#
+msgid "20"
+msgstr ""
+#
+msgid ""
+"How many seconds does the bot wait after enough players have joined the game "
+"before the game actually starts."
+msgstr ""
+#
+msgid ""
+"All triggers should be written without any prefixes. Moreover, triggers "
+"should only contain alphanumeric characters."
+msgstr ""
+#
+msgid "Example"
+msgstr ""
+#
+msgid ""
+"Here, we enable the Uno module at the general configuration level. Therefore, "
+"the game will be available on all networks/servers/channels. Of course, you "
+"can use a more restrictive configuration file if it suits your needs better."
+msgstr ""
