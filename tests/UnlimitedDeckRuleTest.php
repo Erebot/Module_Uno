@@ -3,7 +3,7 @@
 require_once(dirname(__FILE__).'/utils.php');
 
 #class UnoUnlimitedDeckRuleTest
-#extends PHPUnit_Framework_TestCase
+#extends \PHPUnit\Framework\TestCase
 #{
 #}
 

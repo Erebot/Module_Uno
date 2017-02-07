@@ -3,7 +3,7 @@
 require_once(dirname(__FILE__).'/utils.php');
 
 class   UnoStrictRulePlayableCardsTest
-extends PHPUnit_Framework_TestCase
+extends \PHPUnit\Framework\TestCase
 {
     const RULES = 0;    // No variants applied.
 
