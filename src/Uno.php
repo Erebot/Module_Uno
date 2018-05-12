@@ -565,7 +565,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         $infos['triggers']          =&  $triggers;
         $infos['game']              =   new \Erebot\Module\Uno\Game(
             $creator,
-            self::labelsToRules($rules)
+            static::labelsToRules($rules)
         );
 
         $infos['handlers']['challenge'] = new \Erebot\EventHandler(
