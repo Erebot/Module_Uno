@@ -58,6 +58,12 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
     {
         if ($flags & self::RELOAD_MEMBERS) {
             $this->chans = array();
+            try {
+                $this->setFactory('!Event\\ChanText', '\\Erebot\\Event\\ChanText');
+            } catch (\Erebot\InvalidValueException $e) {
+                // This is thrown during the tests.
+            }
+
 ###     $this->db = Doctrine_Manager::connection("sqlite:////tmp/uno.sqlite");
 ###     $this->db->setAttribute(Doctrine_Core::ATTR_QUOTE_IDENTIFIER, true);
 
@@ -488,7 +494,8 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         \Erebot\Interfaces\EventHandler   $handler,
         \Erebot\Interfaces\Event\ChanText $event
     ) {
-        $synEvent = new \Erebot\Event\ChanText(
+        $cls = $this->getFactory('!Event\\ChanText');
+        $synEvent = new $cls(
             $event->getConnection(),
             $event->getChan(),
             '',
@@ -1425,7 +1432,8 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
                         return;
                     }
                     $nextNick   = (string) $next->getPlayer();
-                    $drawEvent  = new \Erebot\Interfaces\Event\ChanText(
+                    $cls = $this->getFactory('!Event\\ChanText');
+                    $drawEvent  = new $cls(
                         $event->getConnection(),
                         $event->getChan(),
                         $nextNick,
