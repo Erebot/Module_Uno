@@ -16,135 +16,44 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once(dirname(__FILE__).'/utils.php');
-
-class UnoModuleStub extends \Erebot\Module\Uno
+class RealGameTest
+extends UnoGameTest
 {
-    protected function parseString($param, $default = null)
-    {
-        return $default;
-    }
-
-    public function & getGame($chan)
-    {
-        if (isset($this->chans[$chan]))
-            return $this->chans[$chan];
-
-        $res = null;
-        return $res;
-    }
-}
-
-class DeckStub extends \Erebot\Module\Uno\Deck\Official
-{
-    public function __construct(array $cards)
-    {
-        $this->discarded    = array();
-        $this->firstCard    = array_shift($cards);
-        $this->cards        = $cards;
-    }
-}
-
-class GameStub extends \Erebot\Module\Uno\Game
-{
-    public function & join($token)
-    {
-        $res =& parent::join($token);
-        sort($this->players);
-        return $res;
-    }
-}
-
-
-class   RealGameTest
-extends Erebot_Testenv_Module_TestCase
-{
-    private $messages;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->messages = array();
-
-        $this->_connection
-            ->expects($this->any())
-            ->method('getIO')
-            ->will($this->returnValue($this));
-
-        $this->_translator
-            ->expects($this->any())
-            ->method('getLocale')
-            ->will($this->returnValue('en_US'));
-
-        $registry = new \Erebot\Module\TriggerRegistry(null);
-        $tracker  = new \Erebot\Module\IrcTracker(null);
-        $registry->reloadModule($this->_connection, \Erebot\Module\Base::RELOAD_ALL);
-        $tracker->reloadModule($this->_connection, \Erebot\Module\Base::RELOAD_ALL);
-
-        $this->_modules['\\Erebot\\Module\\TriggerRegistry'] = $registry;
-        $this->_modules['\\Erebot\\Module\\IrcTracker'] = $tracker;
-
-        $this->_module = new UnoModuleStub(NULL);
-        $this->_module->reloadModule($this->_connection, \Erebot\Module\Base::RELOAD_ALL);
-
-        // Create a few players
-        foreach (array('foo', 'bar', 'baz', 'qux') as $nick) {
-            $this->_modules['\\Erebot\\Module\\IrcTracker']->handleJoin(
-                $this->_eventHandler,
-                new \Erebot\Event\Join($this->_connection, '#erebot', "$nick!$nick@$nick")
-            );
-        }
-    }
-
-    public function push($msg)
-    {
-        $msg = filter_var($msg, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW);
-        $this->messages[] = $msg;
-    }
-
-    protected function setDeck($card /* , ... */)
-    {
-        $cards = func_get_args();
-        $deck = new DeckStub($cards);
-        $game =& $this->_module->getGame('#Erebot');
-        $game['game'] = new GameStub($game['game']->getCreator(), 0, $deck);
-    }
-
     public function testPenaltyDrawAtEndOfGame()
     {
-        // "foo" creates a new game
-        $this->_module->handleCreate($this->_eventHandler, new \Erebot\Event\ChanText($this->_connection, '#Erebot', 'foo', '!uno'));
-
-        // Prepare the deck for a two-players game where the first card dealt
-        // is g6 and both players have exactly the same hand (g0-g5 & w+4).
-        // Additional (penalty) cards are added to the mix.
-        $this->setDeck(
-            'g6',
-            'g0', 'g1', 'g2', 'g3', 'g4', 'g5', 'w+4',
-            'g0', 'g1', 'g2', 'g3', 'g4', 'g5', 'w+4',
-            'b0', 'b1', 'b2', 'b3'
+        // Create a new game, whose rules & deck we control.
+        $this->createFixedGame(
+            'foo',  // Game creator
+            0,      // Rules for the game
+            'g6',   // First card dealt
+            'g0', 'g1', 'g2', 'g3', 'g4', 'g5', 'w+4',  // 1st player's hand
+            'g0', 'g1', 'g2', 'g3', 'g4', 'g5', 'w+4',  // 2nd player's hand
+            'b0', 'b1', 'b2', 'b3'                      // Rest of the deck
         );
 
         // "foo" & "bar" join the game (making it start)
-        $this->_module->handleJoin($this->_eventHandler, new \Erebot\Event\ChanText($this->_connection, '#Erebot', 'foo', 'jp'));
-        $this->_module->handleJoin($this->_eventHandler, new \Erebot\Event\ChanText($this->_connection, '#Erebot', 'bar', 'jo'));
+        // So as to not rely on luck, the person whose nick comes first
+        // in alphabetical order (bar) gets to play first.
+        $this->join('foo');
+        $this->join('bar');
 
-        // Discard unnecessary cards, starting with "bar".
+        // Each player discards his green cards, starting with "bar".
         foreach (range(0, 5) as $n) {
-            $this->_module->handlePlay($this->_eventHandler, new \Erebot\Event\ChanText($this->_connection, '#Erebot', 'bar', "pl g$n"));
-            $this->_module->handlePlay($this->_eventHandler, new \Erebot\Event\ChanText($this->_connection, '#Erebot', 'foo', "pl g$n"));
+            $this->play('bar', "g$n");
+            $this->play('foo', "g$n");
         }
 
-        // Ending move for "bar"
-        $this->_module->handlePlay($this->_eventHandler, new \Erebot\Event\ChanText($this->_connection, '#Erebot', 'bar', "pl w+4"));
+        // Ending move for "bar" : "bar" wins
+        // and forces "foo" to draw 4 cards.
+        $this->play('bar', "w+4");
 
         // Retrieve the results and do some checks
         $last       = array_pop($this->messages);
         $beforeLast = array_pop($this->messages);
 
+        // "foo" still has 56 points left in his hand
+        // (w+4 + b0 + b1 + b2 + b3 = 50 + 0 + 1 + 2 + 3 = 56)
         $this->assertSame($beforeLast, "PRIVMSG #Erebot :foo still had 00,04 00,03W00,12i01,08l00,04d00,03 00,12+01,08400,04  00,12 Blue 0  00,12 Blue 1  00,12 Blue 2  00,12 Blue 3 ");
         $this->assertSame($last, "PRIVMSG #Erebot :bar wins with 56 points");
     }
 }
-
