@@ -88,7 +88,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
             }
 
             $this->creator['handler']  = new \Erebot\EventHandler(
-                \Erebot\CallableWrapper::wrap(array($this, 'handleCreate')),
+                array($this, 'handleCreate'),
                 new \Erebot\Event\Match\All(
                     new \Erebot\Event\Match\Type(
                         '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -569,7 +569,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['challenge'] = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleChallenge')),
+            array($this, 'handleChallenge'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -580,7 +580,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['choose'] = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleChoose')),
+            array($this, 'handleChoose'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -594,7 +594,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['draw']          = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleDraw')),
+            array($this, 'handleDraw'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -605,7 +605,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['join']          = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleJoin')),
+            array($this, 'handleJoin'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -616,7 +616,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['pass']          = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handlePass')),
+            array($this, 'handlePass'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -627,7 +627,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['play']          = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handlePlay')),
+            array($this, 'handlePlay'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -641,7 +641,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['show_cards']    = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleShowCardsCount')),
+            array($this, 'handleShowCardsCount'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -655,7 +655,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['show_discard']  = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleShowDiscard')),
+            array($this, 'handleShowDiscard'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -669,7 +669,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['show_order']    = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleShowOrder')),
+            array($this, 'handleShowOrder'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -683,7 +683,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['show_time']     = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleShowTime')),
+            array($this, 'handleShowTime'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
@@ -694,7 +694,7 @@ class Uno extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
         );
 
         $infos['handlers']['show_turn']     = new \Erebot\EventHandler(
-            \Erebot\CallableWrapper::wrap(array($this, 'handleShowTurn')),
+            array($this, 'handleShowTurn'),
             new \Erebot\Event\Match\All(
                 new \Erebot\Event\Match\Type(
                     '\\Erebot\\Interfaces\\Event\\ChanText'
