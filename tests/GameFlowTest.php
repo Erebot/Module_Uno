@@ -16,8 +16,6 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-require_once(dirname(__FILE__).'/utils.php');
-
 class   UnoGameFlowTest
 extends \PHPUnit\Framework\TestCase
 {

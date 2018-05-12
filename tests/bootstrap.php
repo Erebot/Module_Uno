@@ -8,3 +8,4 @@ require_once(
     DIRECTORY_SEPARATOR . 'testenv' .
     DIRECTORY_SEPARATOR . 'bootstrap.php'
 );
+require_once(dirname(__FILE__).'/utils.php');

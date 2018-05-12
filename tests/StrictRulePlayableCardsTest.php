@@ -1,7 +1,5 @@
 <?php
 
-require_once(dirname(__FILE__).'/utils.php');
-
 class   UnoStrictRulePlayableCardsTest
 extends \PHPUnit\Framework\TestCase
 {
