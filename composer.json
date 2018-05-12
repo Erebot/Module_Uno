@@ -19,15 +19,14 @@
     },
     "require": {
         "php": ">=7.0",
-        "erebot/triggerregistry-module": "*",
-        "erebot/irctracker-module": "*",
-        "erebot/api": "^0.7.1"
+        "erebot/triggerregistry-module": "^0.3.0",
+        "erebot/irctracker-module": "^0.3.1",
+        "erebot/api": "^0.9.1"
     },
     "require-dev": {
-        "erebot/buildenv": "^1.4.0",
-        "erebot/testenv": "^1.1.2",
-        "erebot/erebot": "*",
-        "ext-filter": "*"
+        "ext-filter": "*",
+        "erebot/buildenv": "^1.5.0",
+        "erebot/testenv": "^2.0.0"
     },
     "autoload": {
         "psr-4": {
